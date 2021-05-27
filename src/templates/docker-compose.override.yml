@@ -1,0 +1,61 @@
+version: '3.6'
+services:
+  web:
+    labels:
+      - traefik.enable=true
+      ## HTTP Services
+      - traefik.http.services.{{name}}-svc.loadbalancer.server.port=80
+
+      ## HTTP Routers router.name = b-${branchName}-${subDomain}-${countryCode} // uniqure router definition via name
+  {{#each sites as |site code|}}
+    {{#if site.redirectTo}}
+      ## {{code}} redirect base
+      - traefik.http.routers.b-{{../name}}-{{code}}-redirect-base-rtr.entrypoints=https
+      - traefik.http.routers.b-{{../name}}-{{code}}-redirect-base-rtr.rule=Host(`{{site.redirectTo}}`)
+      - traefik.http.routers.b-{{../name}}-{{code}}-redirect-base-rtr.service={{../name}}-svc
+      - traefik.http.routers.b-{{../name}}-{{code}}-redirect-base-rtr.priority={{../routePriority}}
+
+    {{/if}}
+    {{#each site.urlObjects as |urlObj index|}}
+      {{#unless site.redirectTo}}
+      ## {{code}} {{urlObj.url}}
+      - traefik.http.routers.b-{{../../name}}-{{code}}-{{index}}-rtr.entrypoints=https
+      - traefik.http.routers.b-{{../../name}}-{{code}}-{{index}}-rtr.rule=Host(`{{urlObj.url}}`)
+      - traefik.http.routers.b-{{../../name}}-{{code}}-{{index}}-rtr.service={{../../name}}-svc
+      - traefik.http.routers.b-{{../../name}}-{{code}}-{{index}}-rtr.priority={{../../routePriority}}
+
+      {{/unless}}
+      {{#if site.redirectTo}}
+      ## {{code}} {{urlObj.url}} redirect to site.redirectTo
+      - traefik.http.middlewares.b-{{../../name}}-{{code}}-{{index}}-mw.redirectregex.regex=https://^http://{{urlObj.url}}/(.*)
+      - traefik.http.middlewares.b-{{../../name}}-{{code}}-{{index}}-mw.redirectregex.replacement=https://{{site.redirectTo}}$${1}
+      - traefik.http.middlewares.b-{{../../name}}-{{code}}-{{index}}-mw.redirectregex.permanent=true
+
+      - traefik.http.routers.b-{{../../name}}-{{code}}-{{index}}-rtr.entrypoints=https
+      - traefik.http.routers.b-{{../../name}}-{{code}}-{{index}}-rtr.rule=Host(`{{urlObj.url}}`)
+      - traefik.http.routers.b-{{../../name}}-{{code}}-{{index}}-rtr.service={{../../name}}-svc
+      - traefik.http.routers.b-{{../../name}}-{{code}}-{{index}}-rtr.priority=0
+      - traefik.http.routers.b-{{../../name}}-{{code}}-{{index}}-rtr.middlewares=b-{{../../name}}-{{code}}-{{index}}-mw
+
+      {{/if}}
+    {{/each}}
+  {{/each}}
+    external_links:
+      - loadbalancer_traefik_1
+    networks:
+      - webgateway
+      - ddev_default
+{{#unless isLocal}}
+  db:
+    volumes:
+      - source: /home/ubuntu/efs/archives
+        target: /dumps
+        type: bind
+        volume:
+          nocopy: true
+{{/unless}}
+networks:
+  webgateway:
+    external: true
+  ddev_default:
+    external: true

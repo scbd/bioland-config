@@ -1,0 +1,13 @@
+{{#if isLocal}}
+additional_hostnames:
+  {{#each siteCodes}}
+  - {{this}}
+  {{/each}}
+{{/if}}
+hooks:
+  post-start:
+  {{#each siteCodes}}
+  - exec: mysql -uroot -proot -e "CREATE DATABASE IF NOT EXISTS \`{{this}}\`; GRANT ALL ON \`{{this}}\`.* to 'db'@'%';"
+    service: db
+  # - exec: drush @demo {{this}}
+  {{/each}}
