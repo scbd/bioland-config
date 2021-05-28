@@ -1,3 +1,3 @@
-import { cacheTask } from '../../tasks/drush-calls/index.mjs'
+import { blUsersTask } from '../../tasks/drush-calls/index.mjs'
 
-cacheTask('test')
+blUsersTask('test')

@@ -12,7 +12,7 @@ export const initDns = async (branch) => {
   if(isLocal) return
 
   for (const hostedZoneId of getZoneIds(branch)) {
-    if(hostedZoneId === 'Z17YZYXL9GEG03') continue //temporary
+    //if(hostedZoneId === 'Z17YZYXL9GEG03') continue //temporary
 
     const urls = getDomainsByZoneId (branch, hostedZoneId)
 

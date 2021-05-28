@@ -73,13 +73,32 @@ async function blConfigDefault(branch){
 
   for (const site in sites) {
     try {
-      const logo = sites[site].logo? sites[site].logo : `${site}.png`
+      const logoString = sites[site].logo? sites[site].logo : `https://www.chm-cbd.net/sites/default/files/images/flags/flag-${site}.png`
+      const logo       = logoString.startsWith('http')? logoString : `public://${logoString}`
 
       execSync(`ddev drush -y @${site} cset slick.optionset.slideshow options.settings.autoplay 1`)
-      execSync(`ddev drush -y @${site} cset biotheme.settings logo.path "public://${logo}"`)
+      execSync(`ddev drush -y @${site} cset biotheme.settings logo.path "${logo}"`)
+
+      // execSync(`ddev drush -y @${site} pm:uninstall webform_ui`)
+      // execSync(`ddev drush -y @${site} pm:uninstall webform_bootstrap`)
+      // execSync(`ddev drush -y @${site} pm:uninstall webform_node`)
+      // execSync(`ddev drush -y @${site} pm:uninstall webform`)
+
+      consola.error('countryMap[site].name[sites[site].locale]', countryMap[site].name[sites[site].locale])
+
+
 
       if(countryMap[site])
-        execSync(`ddev drush -y @${site} cset biotheme.settings block.block.biolandfooterbiolandlinks.settings.label "'${parse(countryMap[site].name[sites[site].locale])}'"`)
+        execSync(`ddev drush -y @${site} cset block.block.biolandfooterbiolandlinks settings.label "\"${parse(countryMap[site].name[sites[site].locale])}\""`)
+
+      console.log('')
+      consola.info(`${site}: config updated`)
+
+      execSync(`ddev drush @${site} cr`)
+
+      
+      console.log('')
+      consola.info(`${site}: cache rebuilt`)
     }
     catch(e){
       consola.error(`${site}:  blConfigDefault`, e)
@@ -458,4 +477,8 @@ function patchDrupal(){
   replaceInFile(fileName, replaceCode, patchCode)
 }
 
+function parse(s){
+
+  return s.replaceAll("'",'\\`')
+}
 // AH01071: Got error 'PHP message: Error: Call to a member function isTranslatable() on null in /var/www/html/web/core/lib/Drupal/Core/Entity/ContentEntityBase.php on line 211 #0 /var/www/html/web/core/lib/Drupal/Core/Entity/Sql/SqlContentEntityStorage.php(530): Drupal\\Core\\Entity\\ContentEntityBase->__construct(Array, 'entity_subqueue', 'slideshow', Array)\n#1 /var/www/html/web/core/lib/Drupal/Core/Entity/Sql/SqlContentEntityStorage.php(449): Drupal\\Core\\Entity\\Sql\\SqlContentEntityStorage->mapFromStorageRecords(Array)\n#2 /var/www/html/web/core/lib/Drupal/Core/Entity/Sql/SqlContentEntityStorage.php(415): Drupal\\Core\\Entity\\Sql\\SqlContentEntityStorage->getFromStorage(Array)\n#3 /var/www/html/web/core/lib/Drupal/Core/Entity/EntityStorageBase.php(300): Drupal\\Core\\Entity\\Sql\\SqlContentEntityStorage->doLoadMultiple(Array)\n#4 /var/www/html/web/core/modules/views/src/Plugin/views/query/Sql.php(1610): Drupal\\Core\\Entity\\EntityStorageBase->loadMultiple(Array)\n#5 /var/www/html/web/core/modules/views/src/Plugin/views/query/Sql.php(...'
