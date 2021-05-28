@@ -2,7 +2,7 @@ import { notifyDone, runTask } from '../../util/cli-feedback.mjs'
 import { execSync   }          from 'child_process'
 import   config                from '../../util/config.mjs'
 import { replaceInFile } from '../../util/files.mjs'
-
+import { parse } from 'shell-quote'
 import consola from 'consola'
 import request from 'superagent'
 
@@ -79,7 +79,7 @@ async function blConfigDefault(branch){
       execSync(`ddev drush -y @${site} cset biotheme.settings logo.path "public://${logo}"`)
 
       if(countryMap[site])
-        execSync(`ddev drush -y @${site} cset biotheme.settings block.biolandfooterbiolandlinks.settings.label "'${countryMap[site].name[sites[site].locale]}'"`)
+        execSync(`ddev drush -y @${site} cset biotheme.settings block.biolandfooterbiolandlinks.settings.label "'${parse(countryMap[site].name[sites[site].locale])}'"`)
     }
     catch(e){
       consola.error(`${site}:  blConfigDefault`, e)

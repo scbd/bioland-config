@@ -11,7 +11,7 @@ export default {
   // bj  : { chmGovernment: 'BEN', environment, locale, locales },
   // cm  : { chmGovernment: 'CMR', environment, locale, locales },
   // cd  : { chmGovernment: 'COD', environment, locale, locales },
-  // ci  : { chmGovernment: 'CIV', environment, locale, locales },
+  ci  : { chmGovernment: 'CIV', environment, locale, locales },
   // gn  : { chmGovernment: 'GIN', environment, locale, locales },
   // gw  : { chmGovernment: 'GNB', environment, locale, locales },
   // mg  : { chmGovernment: 'MDG', environment, locale, locales },
