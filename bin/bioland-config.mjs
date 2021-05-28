@@ -31,9 +31,6 @@ function runChildProcess(theCommand){
   if(theCommand === 'getBaseDomains')       scriptPathToFork = `${src}/child-processes/getBaseDomains.mjs`
   if(theCommand === 'getBaseDomainsTest')   scriptPathToFork = `${src}/child-processes/getBaseDomainsTest.mjs`
 
-  if(theCommand === 'settingsCarousel')     scriptPathToFork = `${src}/child-processes/settings-carousel-autoplay.mjs`
-  if(theCommand === 'settingsCarouselTest') scriptPathToFork = `${src}/child-processes/settings-carousel-autoplay-test.mjs`
-
   if(theCommand === 'createAdminTest')      scriptPathToFork = `${src}/child-processes/drush/create-admin-test.mjs`
   if(theCommand === 'createAdmin')          scriptPathToFork = `${src}/child-processes/drush/create-admin-prod.mjs`
 
