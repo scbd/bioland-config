@@ -79,7 +79,7 @@ async function blConfigDefault(branch){
       execSync(`ddev drush -y @${site} cset biotheme.settings logo.path "public://${logo}"`)
 
       if(countryMap[site])
-        execSync(`ddev drush -y @${site} cset biotheme.settings block.block.biolandfooterbiolandlinks settings.label "'${parse(countryMap[site].name[sites[site].locale])}'"`)
+        execSync(`ddev drush -y @${site} cset biotheme.settings block.block.biolandfooterbiolandlinks.settings.label "'${parse(countryMap[site].name[sites[site].locale])}'"`)
     }
     catch(e){
       consola.error(`${site}:  blConfigDefault`, e)

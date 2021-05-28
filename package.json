@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "main": "src/index.mjs",
   "license": "MIT",
-  "scripts": {
-    "clean-install": "if test -f yarn.lock; then rm yarn.lock; fi && if test -f node_modules; then rm -rf node_modules; fi && yarn install --force"
-  },
   "devDependencies": {
     "nodemon": "^2.0.7"
   },
