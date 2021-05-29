@@ -45,7 +45,7 @@ export default {
   lb: { chmGovernment: 'LBN', environment, locale, locales  },
   kw: { chmGovernment: 'KWT', environment, locale:'ar', locales:['ar', 'en'] }, // prod
 
-  new
+  //new
   vn: { chmGovernment: 'VNM', environment, locale, locales }
 }
 
