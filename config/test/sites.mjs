@@ -47,7 +47,7 @@ const environment = 'test'
 
   // new
   //vn: { chmGovernment: 'VNM', environment, locale, locales }
-}
+//}
 
 // errors gw my om ps eg bt lb
 // https://demo.test.chm-cbd.net/gbifstats/display/MY
