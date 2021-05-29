@@ -4,7 +4,7 @@ import { locale, locales } from '../util.mjs'
 
 const environment = 'test'
 
-export default {
+// export default {
   // demo: { chmGovernment: 'MYS', environment, logo: 'fiji.png', locale, locales }, // bioland-v3.5.1
 
   // bf  : { chmGovernment: 'BFA', environment, locale, locales },
