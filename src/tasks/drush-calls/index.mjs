@@ -1,10 +1,17 @@
 import { notifyDone, runTask } from '../../util/cli-feedback.mjs'
-import { execSync   }          from 'child_process'
+import { execSync, spawnSync   }          from 'child_process'
 import   config                from '../../util/config.mjs'
 import { replaceInFile } from '../../util/files.mjs'
-import { parse } from 'shell-quote'
+// import { parse } from 'shell-quote'
 import consola from 'consola'
-import request from 'superagent'
+import { getCountries } from '../../util/countries.mjs'
+import initSite from './init-site.mjs'
+
+export const initSiteTask = async(branch, args) => {
+  await (runTask(branch))(initSite, `Initiating new site ${args.site}`, [args])
+  
+  notifyDone()()
+}
 
 export const createAdminTask = async(branch, { email, pass, name }) => {
   await (runTask(branch))(createAdmin, `Creating Admin User ${email}`, [{ email, pass, name }])
@@ -84,12 +91,9 @@ async function blConfigDefault(branch){
       // execSync(`ddev drush -y @${site} pm:uninstall webform_node`)
       // execSync(`ddev drush -y @${site} pm:uninstall webform`)
 
-      consola.error('countryMap[site].name[sites[site].locale]', countryMap[site].name[sites[site].locale])
-
-
 
       if(countryMap[site])
-        execSync(`ddev drush -y @${site} cset block.block.biolandfooterbiolandlinks settings.label "\"${parse(countryMap[site].name[sites[site].locale])}\""`)
+        spawnSync('ddev',['drush', '-y', `@${site}`, 'cset', 'block.block.biolandfooterbiolandlinks', 'settings.label', `"${parse(countryMap[site].name[sites[site].locale])}"`])
 
       console.log('')
       consola.info(`${site}: config updated`)
@@ -106,18 +110,20 @@ async function blConfigDefault(branch){
   }
 }
 
-async function getCountries(){
-  const data = await request.get('https://api.cbd.int/api/v2015/countries/')
-                      .then(({ body }) => body)
 
-  const cMap = {}
 
-  for (const aCountry of data) {
-    cMap[aCountry.code.toLowerCase()] = aCountry
-  }
+// async function getCountries(){
+//   const data = await request.get('https://api.cbd.int/api/v2015/countries/')
+//                       .then(({ body }) => body)
 
-  return cMap
-}
+//   const cMap = {}
+
+//   for (const aCountry of data) {
+//     cMap[aCountry.code.toLowerCase()] = aCountry
+//   }
+
+//   return cMap
+// }
 
 function blUsers (branch) {
   const homeDir  = process.env.BL_HOME? process.env.BL_HOME : `/home/ubuntu/${branch}`

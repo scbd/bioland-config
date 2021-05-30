@@ -112,9 +112,26 @@ function getCommand(){
   return theCommand
 }
 
+function branch(){
+  const theBranch = changeCase.camelCase(process.argv[3])
+
+  if(!isValidCommand(theCommand)) throw new Error('bioland-config: command passed not valid')
+
+  return theCommand
+}
+
 function isValidCommand(theCommand){
   if (commands.includes(theCommand)) return true
 
   consola.error(`${theCommand}: is not a valid command.  One of ${JSON.stringify(commands)}.`)
+  return false
+}
+
+function isValidBranch(theBranch){
+  const branches = ['demo', 'test', 'prod']
+
+  if (branches.includes(theBranch)) return true
+
+  consola.error(`${theBranch}: is not a valid command.  One of ${JSON.stringify(commands)}.`)
   return false
 }

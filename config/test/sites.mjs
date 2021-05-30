@@ -1,11 +1,12 @@
-// demo bf bj cm cd ci gn gw mg ma me tg ch my th ph sg id gy om ps ug eg nl bt lb kw 27
+// demo bf bj cm cd ci gn gw mg ma me tg ch my th ph sg id gy om ps ug eg nl bt lb kw ne om 29
 
 import { locale, locales } from '../util.mjs'
 
 const environment = 'test'
-
+// not migrated!!!!! https://test-ne.chm-cbd.net/ https://test-om.chm-cbd.net/
 export default {
-  demo: { chmGovernment: 'MYS', environment, logo: 'fiji.png', locale, locales }, // bioland-v3.5.1
+  //
+  demo: { chmGovernment: 'MYS', environment, logo: 'fiji.png', locale, locales }, 
 
   bf  : { chmGovernment: 'BFA', environment, locale, locales },
   bj  : { chmGovernment: 'BEN', environment, locale, locales },
@@ -18,6 +19,8 @@ export default {
   ma  : { chmGovernment: 'MAR', environment, locale, locales },
   tg  : { chmGovernment: 'TGO', environment, locale, locales },
   ch  : { chmGovernment: 'CHE', environment, locale, locales },
+  ne  : { chmGovernment: 'NER', environment, locale, locales: ['en', 'fr'] },
+  om  : { chmGovernment: 'OMN', environment, locale, locales: ['en', 'ar'] },
 
   // bioland20200310
   // my th ph sg id  5
@@ -32,7 +35,7 @@ export default {
   gy  : { chmGovernment: 'GUY', environment, locale, locales },
   om  : { chmGovernment: 'OMN', environment, locale, locales },
   ps  : { chmGovernment: 'PSE', environment, locale, locales },
-  ug  : { chmGovernment: 'UGA', environment, locale, locales },                              
+  ug  : { chmGovernment: 'UGA', environment, locale, locales },
 
   // bioland-v3.6
   // eg 1
@@ -43,7 +46,7 @@ export default {
   nl: { chmGovernment: 'NLD', environment, locale, locales },
   bt: { chmGovernment: 'BTN', environment, locale, locales },
   lb: { chmGovernment: 'LBN', environment, locale, locales  },
-  kw: { chmGovernment: 'KWT', environment, locale:'ar', locales:['ar', 'en'] }, // prod
+  kw: { chmGovernment: 'KWT', environment, locale:'ar', locales:['ar', 'en'] },
 
   //new
   vn: { chmGovernment: 'VNM', environment, locale, locales }
