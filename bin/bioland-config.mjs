@@ -1,26 +1,35 @@
 #!/usr/bin/env node
 import { fork } from 'child_process'
 import changeCase from 'change-case'
-import consola from 'consola'
 import { startFeedback, endFeedback, startTaskInfo, endTaskInfo, taskError } from '../src/util/cli-feedback.mjs'
+import { getBranch } from '../src/child-processes/util.mjs' 
 import { context } from  '../src/util/context.mjs'
 import { resolve } from 'path'
-
-const commands = [ 'init', 'initTest', 'getDomains', 'getDomainsTest', 'getBaseDomains', 'settingsCarouselTest', 'createAdmin', 'createAdminTest', 'createUser', 'createUserTest', 'password', 'passwordTest', 'cache', 'cacheTest', 'update', 'updateTest', 'gbif', 'gbifTest', 'role', 'roleTest', 'blUsers', 'blUsersTest', 'blConfigDefault','blConfigDefaultTest']
+import consola from 'consola'
+const commands = [ 'init','bk', 'bkSite', 'initTest', 'getDomains', 'getDomainsTest', 'getBaseDomains', 'settingsCarouselTest', 'createAdmin', 'createAdminTest', 'createUser', 'createUserTest', 'password', 'passwordTest', 'cache', 'cacheTest', 'update', 'updateTest', 'gbif', 'gbifTest', 'role', 'roleTest', 'blUsers', 'blUsersTest', 'blConfigDefault','blConfigDefaultTest']
 const src      = resolve(context, 'node_modules/bioland-config/src/')
+
+
 
 runCommand()
 
 function runCommand(){
+
   const theCommand = getCommand()
 
-  startFeedback(`BIOLAND-CONFIG: ${theCommand}`)
+  startFeedback(`BIOLAND-CONFIG: ${getBranch(true).toUpperCase()} => ${theCommand}`)
 
   runChildProcess(theCommand)
 }
 
 function runChildProcess(theCommand){
   let scriptPathToFork = ''
+
+  if(theCommand === 'createBranch')         scriptPathToFork = `${src}/child-processes/create-branch.mjs`
+  if(theCommand === 'initBranch')           scriptPathToFork = `${src}/child-processes/init-branch.mjs`
+  if(theCommand === 'iniSite')              scriptPathToFork = `${src}/child-processes/init-site.mjs`
+  if(theCommand === 'bk')                   scriptPathToFork = `${src}/child-processes/bk.mjs`
+  if(theCommand === 'bkSite')               scriptPathToFork = `${src}/child-processes/bk-site.mjs`
 
   if(theCommand === 'init')                 scriptPathToFork = `${src}/child-processes/init.mjs`
   if(theCommand === 'initTest')             scriptPathToFork = `${src}/child-processes/initTest.mjs`
@@ -105,33 +114,19 @@ function initChildProcessApi(forked){
 }
 
 function getCommand(){
-  const theCommand = changeCase.camelCase(process.argv[2])
+  const theCommandOne = process.argv[2]? changeCase.camelCase(process.argv[2]) : ''
+  const theCommandTwo = process.argv[3]? changeCase.camelCase(process.argv[3]) : ''
 
-  if(!isValidCommand(theCommand)) throw new Error('bioland-config: command passed not valid')
+  if(isValidCommand(theCommandOne)) return theCommandOne
 
-  return theCommand
+  if(isValidCommand(theCommandTwo)) return theCommandTwo
+  
+  throw new Error(`bioland-config: ${theCommand} or ${theCommandTwo} command passed not valid`)
 }
 
-function branch(){
-  const theBranch = changeCase.camelCase(process.argv[3])
-
-  if(!isValidCommand(theCommand)) throw new Error('bioland-config: command passed not valid')
-
-  return theCommand
-}
 
 function isValidCommand(theCommand){
   if (commands.includes(theCommand)) return true
 
-  consola.error(`${theCommand}: is not a valid command.  One of ${JSON.stringify(commands)}.`)
-  return false
-}
-
-function isValidBranch(theBranch){
-  const branches = ['demo', 'test', 'prod']
-
-  if (branches.includes(theBranch)) return true
-
-  consola.error(`${theBranch}: is not a valid command.  One of ${JSON.stringify(commands)}.`)
   return false
 }
