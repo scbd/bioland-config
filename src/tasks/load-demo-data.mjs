@@ -32,8 +32,6 @@ async function loadDemoData(branch, site){
 
     execSync(`cd ${webCtx}`)
 
-    execSync(`ddev drush @${site} sset system.maintenance_mode 1`)
-
     execSync(`ddev drush @${site} sql:cli < /home/ubuntu/efs/tmp/demo.sql`)
 
     execSync(`cp /home/ubuntu/efs/tmp/files.tgz ${sitesCtx}/${site}/files.tgz`)
@@ -41,7 +39,6 @@ async function loadDemoData(branch, site){
 
     execSync(`ddev drush @${site} cr`)
 
-    execSync(`ddev drush @${site} sset system.maintenance_mode 1`)
     return
   }
   catch(e){
