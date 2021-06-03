@@ -57,11 +57,12 @@ export function backUpSite(branch, site, { preDrupalUpgrade } = { preDrupalUpgra
   execSync(`aws s3 cp "${webCtx}/dumps/${site}/${site}-${dateTime}-site.tgz" "${S3_URL_YEAR_MONTH}/${site}/${site}-${dateTime}-site${preDrupalUpgradeFlag}.tgz"`)
   execSync(`aws s3 cp "${webCtx}/dumps/${site}/${site}-${dateTime}.sql.gz" "${S3_URL_YEAR_MONTH}/${site}/${site}-${dateTime}${preDrupalUpgradeFlag}.sql.gz"`)
 
+
   console.log('')
   consola.info(`${site}: transfered to ${S3_URL_YEAR_MONTH}/${site}/${site}-${dateTime}`)
 
-  if(!preDrupalUpgradeFlag) execSync(`aws s3 cp "${webCtx}/dumps/${site}/${site}-${dateTime}-site.tgz" "${S3_URL}/${site}-latest-site.tgz"`)
-  if(!preDrupalUpgradeFlag) execSync(`aws s3 cp "${webCtx}/dumps/${site}/${site}-${dateTime}.sql.gz" "${S3_URL}/${site}-latest.sql.gz"`)
+  execSync(`aws s3 cp "${webCtx}/dumps/${site}/${site}-${dateTime}-site.tgz" "${S3_URL}/${site}-latest-site${preDrupalUpgradeFlag}.tgz"`)
+  execSync(`aws s3 cp "${webCtx}/dumps/${site}/${site}-${dateTime}.sql.gz" "${S3_URL}/${site}-latest${preDrupalUpgradeFlag}.sql.gz"`)
 
   console.log('')
   consola.info(`${site}: transfered to ${S3_URL}}/${site}-latest-*`)
@@ -90,6 +91,10 @@ function backUpPathAlias(branch, site, { preDrupalUpgrade } = { preDrupalUpgrade
 
   execSync(`aws s3 cp "${webCtx}/dumps/${site}/${site}-${dateTime}-path-alias.sql.gz" "${S3_URL_YEAR_MONTH}/${site}/${site}-${dateTime}-path-alias${preDUpgradeFlag}.sql.gz"`)
   execSync(`aws s3 cp "${webCtx}/dumps/${site}/${site}-${dateTime}-taxon.sql.gz" "${S3_URL_YEAR_MONTH}/${site}/${site}-${dateTime}-taxon${preDUpgradeFlag}.sql.gz"`)
+
+
+  execSync(`aws s3 cp "${webCtx}/dumps/${site}/${site}-${dateTime}.sql.gz" "${S3_URL}/${site}-latest-path-alias${preDUpgradeFlag}.sql.gz"`)
+  execSync(`aws s3 cp "${webCtx}/dumps/${site}/${site}-${dateTime}.sql.gz" "${S3_URL}/${site}-latest-taxon${preDUpgradeFlag}.sql.gz"`)
 
   execSync(`rm ${webCtx}/dumps/${site}/${site}-${dateTime}-path-alias.sql.gz`)
   execSync(`rm ${webCtx}/dumps/${site}/${site}-${dateTime}-taxon.sql.gz`)

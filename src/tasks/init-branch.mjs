@@ -1,9 +1,9 @@
 import { notifyDone        , runTask } from '../util/cli-feedback.mjs'
-import { initDdevConfig              } from './ddev-config.mjs'
+import { initDdevConfig              } from './not-user-commands/ddev-config.mjs'
 import { initDrushConfig             } from './not-user-commands/drush-config.mjs'
 import { initSites                   } from './not-user-commands/sites.mjs'
-import { initDockerOverride          } from './docker-override.mjs'
-import { initDns                     } from './dns-update.mjs'
+import { initDockerOverride          } from './not-user-commands/docker-override.mjs'
+import { initDns                     } from './not-user-commands/dns-update.mjs'
 
 export default async (branch) => {
 

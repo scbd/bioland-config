@@ -1,4 +1,5 @@
 import consola from "consola"
+import { getIsoAlpha3 } from '../src/util/countries.mjs'
 
 const HostedZoneIdMap = initHostedZoneMap()
 const FqdnMap         = initFqdnMap()
@@ -31,7 +32,11 @@ export const makeUrls = (branch, sites, baseUrls, isLocal, port)=>{
     sites[code].host = getHostUrl(branch, sites[code], isLocal, port)
   }
 
-  
+  for (const code in sites) {
+    if(sites[code].chmGovernment) continue
+    
+    sites[code].chmGovernment = getIsoAlpha3(code)
+  }
 }
 
 function getHostUrl(branch, { redirectTo, urls }, isLocal, port){
@@ -93,7 +98,7 @@ function initHostedZoneMap (){
   map.set('.prod.chm-cbd.net', 'Z00889532KKAN75PD7Q0H')
   map.set('.test.chm-cbd.net', 'Z02360093U5TPDSVFLSQA')
   map.set('.demo.chm-cbd.net', 'Z09134566NYGZI85MI7J')
-  map.set('.chm-cbd.net'     , 'Z17YZYXL9GEG03')
+  map.set('.chm-cbd.net'    , 'Z17YZYXL9GEG03')
 
   return map
 }
@@ -109,3 +114,10 @@ function initFqdnMap (){
 
   return map
 }
+
+const all = ['ad', 'ae', 'af', 'ag', 'al', 'am', 'ao', 'ar', 'at', 'au', 'az', 'ba', 'bb', 'bd', 'be', 'bf', 'bg', 'bh', 'bi', 'bj', 'bn', 'bo', 'br', 'bs', 'bt', 'bw', 'by', 'bz', 'ca', 'cd', 'cf', 'cg', 'ch', 'ci', 'ck', 'cl', 'cm', 'cn', 'co', 'cr', 'cu', 'cv', 'cy', 'cz', 'de', 'dj', 'dk', 'dm', 'do', 'dz', 'ec', 'ee', 'eg', 'er', 'es', 'et', 'eu', 'fi', 'fj', 'fm', 'fr', 'ga', 'gb', 'gd', 'ge', 'gh', 'gm', 'gn', 'gq', 'gr', 'gt', 'gw', 'gy', 'hn', 'hr', 'ht', 'hu', 'id', 'ie', 'il', 'in', 'iq', 'ir', 'is', 'it', 'jm', 'jo', 'jp', 'ke', 'kg', 'kh', 'ki', 'km', 'kn', 'kp', 'kr', 'kw', 'kz', 'la', 'lb', 'lc', 'li', 'lk', 'lr', 'ls', 'lt', 'lu', 'lv', 'ly', 'ma', 'mc', 'md', 'me', 'mg', 'mh', 'mk', 'ml', 'mm', 'mn', 'mr', 'mt', 'mu', 'mv', 'mw', 'mx', 'my', 'mz', 'na', 'ne', 'ng', 'ni', 'nl', 'no', 'np', 'nr', 'nu', 'nz', 'om', 'pa', 'pe', 'pg', 'ph', 'pk', 'pl', 'ps', 'pt', 'pw', 'py', 'qa', 'ro', 'rs', 'ru', 'rw', 'sa', 'sb', 'sc', 'sd', 'se', 'sg', 'si', 'sk', 'sl', 'sm', 'sn', 'so', 'sr', 'ss', 'st', 'sv', 'sy', 'sz', 'td', 'tg', 'th', 'tj', 'tl', 'tm', 'tn', 'to', 'tr', 'tt', 'tv', 'tz', 'ua', 'ug', 'us', 'uy', 'uz', 'va', 'vc', 've', 'vn', 'vu', 'ws', 'ye', 'za', 'zm', 'zw']
+
+const test          = [ 'bf', 'bj', 'bt', 'cd', 'ch', 'ci', 'cm', 'demo', 'eg', 'gn', 'gw', 'gy', 'id', 'kw', 'lb', 'ma', 'mg', 'my', 'ne', 'nl', 'om', 'ph', 'ps', 'sg', 'tg', 'th', 'ug', 'vn' ]
+const prod          = [ 'acb', 'be', 'bi', 'ca', 'fr', 'zw' ]
+const prodRedirects = [ 'ba', 'sc', 'cn', 'iq', 'jp', 'my', 'mm', 'kr', 'by', 'hr', 'cz', 'ee', 'hu', 'pl', 'ru', 'rs', 'si', 'do', 'gd', 'jm', 'mx', 'au', 'at', 'ad', 'eu', 'fi', 'nl', 'se', 'at', 'cu', 'kh' ]
+const ptks          = [ 'bf', 'bj', 'bt', 'cd', 'cf', 'cg', 'ci', 'cm', 'dj', 'et', 'ga', 'gh', 'gn', 'iq', 'jo', 'km', 'lr', 'ma', 'mg', 'ml', 'mr', 'mu', 'ne', 'rw', 'sd', 'td', 'tg', 'tz', 'ye', 'zm', 'gy', 'cz', 'de', 'gd', 'hu', 'nl', 'pw']

@@ -27,20 +27,26 @@ async function updateSite(branch, site) {
   try{
     execSync(`cd ${webCtx}`)
 
-    execSync(`ddev drush @${site} sset system.maintenance_mode 0`)
+    execSync(`ddev drush @${site} sset system.maintenance_mode 1`)
 
     await backUpSite(branch, site, { preDrupalUpgrade: true })
-    //await preUpgrade(branch, site)
+    await preUpgrade(branch, site)
 
     patchDrupal()
 
     execSync(`ddev drush -y @${site} updatedb -vvv`)
 
+    execSync(`aws s3 cp "s3://biolands/${branch}/${site}-latest-taxon-drupal-upgrade.sql.gz" "/home/ubuntu/efs/tmp/${site}-latest-taxon-drupal-upgrade.sql.gz" `)
+    execSync(`gunzip /home/ubuntu/efs/tmp/${site}-latest-taxon-drupal-upgrade.sql.gz`)
+    execSync(`ddev drush @${site} sql:cli < /home/ubuntu/efs/tmp/${site}-latest-taxon-drupal-upgrade.sql`)
+    execSync(`rm /home/ubuntu/efs/tmp/${site}-latest-taxon-drupal-upgrade.sql`)
+
     execSync(`ddev drush -y @${site} cr`)
+    
     console.log('')
     consola.info(`${site}: site updated`)
 
-    execSync(`ddev drush @${site} sset system.maintenance_mode 1`)
+    execSync(`ddev drush @${site} sset system.maintenance_mode 0`)
   }catch(e){
     consola.error(`${site}: update error`, e)
   }
