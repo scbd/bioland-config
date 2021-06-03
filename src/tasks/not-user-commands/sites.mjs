@@ -1,8 +1,8 @@
 import   Handlebars                from 'handlebars'
-import   config                    from '../util/config.mjs'
+import   config                    from '../../util/config.mjs'
 import   fs                        from 'fs-extra'
-import { readTemplate, writeFile } from '../util/files.mjs'
-import { sitesCtx     }            from '../util/context.mjs'
+import { readTemplate, writeFile } from '../../util/files.mjs'
+import { sitesCtx     }            from '../../util/context.mjs'
 
 import consola from 'consola'
 

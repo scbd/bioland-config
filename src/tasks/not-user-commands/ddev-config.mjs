@@ -1,8 +1,8 @@
 
 import   Handlebars                from 'handlebars'
-import   config                    from '../util/config.mjs'
-import { readTemplate, writeFile } from '../util/files.mjs'
-import { ddev         }            from '../util/context.mjs'
+import   config                    from '../../util/config.mjs'
+import { readTemplate, writeFile } from '../../util/files.mjs'
+import { ddev         }            from '../../util/context.mjs'
 
 const HB = Handlebars.create()
 export const writeDdevConfig = (branch) => {

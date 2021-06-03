@@ -1,6 +1,6 @@
-import   config          from '../util/config.mjs'
+import   config          from '../../util/config.mjs'
 import   isPlainObject   from 'lodash.isplainobject'
-import { writeFile } from '../util/files.mjs'
+import { writeFile } from '../../util/files.mjs'
 import   consola         from 'consola'
 
 export const getDomains = (branch)=>{

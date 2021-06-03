@@ -1,7 +1,7 @@
 import Handlebars from 'handlebars'
-import config     from '../util/config.mjs'
-import { readTemplate, writeFile } from '../util/files.mjs'
-import { drushSites                        } from '../util/context.mjs'
+import config     from '../../util/config.mjs'
+import { readTemplate, writeFile } from '../../util/files.mjs'
+import { drushSites                        } from '../../util/context.mjs'
 
 const HB = Handlebars.create()
 

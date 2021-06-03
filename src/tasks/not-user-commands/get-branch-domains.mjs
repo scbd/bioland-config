@@ -1,4 +1,4 @@
-import   config          from '../util/config.mjs'
+import   config          from '../../util/config.mjs'
 import   isPlainObject   from 'lodash.isplainobject'
 
 function branchDomains (branch, base = false){

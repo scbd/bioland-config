@@ -1,5 +1,5 @@
 import   AWS                               from 'aws-sdk'
-import   config                            from '../util/config.mjs'
+import   config                            from '../../util/config.mjs'
 import { getDomainsByZoneId , getZoneIds } from './domains.mjs'
 import   consola                           from 'consola'           ;
 
