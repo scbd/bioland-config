@@ -14,7 +14,7 @@ export default async(branch, args) => {
   notifyDone()()
 }
 
-function backUpAll(branch){
+async function backUpAll(branch){
   const { sites }  = config[branch]
 
   for (const site in sites)
