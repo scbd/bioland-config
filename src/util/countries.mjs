@@ -21,6 +21,7 @@ export const getCountries = async ()=>{
 
 
 export const getIsoAlpha3 = (code) =>{
+  if(code==='eu') return 'EU'
   if(!code) throw new Error('getIsoAlpha3: passed code undefined')
 
   const country = (allCodes.filter((c) => c['alpha-2'] === code.toUpperCase()))[0]
