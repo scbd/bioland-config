@@ -83,13 +83,13 @@ function backUpPathAlias(branch, site, { preDrupalUpgrade } = { preDrupalUpgrade
 
   const preDUpgradeFlag = preDrupalUpgrade? '-drupal-upgrade' : ''
 
-  execSync(`ddev drush "@${site}" sql:dump --tables-list=path_* --gzip --result-file="dumps/${site}/${site}-${dateTime}-path-alias${preDrupalUpgrade}.sql"`)
-  execSync(`ddev drush "@${site}" sql:dump --tables-list=taxonomy_* --gzip --result-file="dumps/${site}/${site}-${dateTime}-taxon${preDrupalUpgrade}.sql"`)
+  execSync(`ddev drush "@${site}" sql:dump --tables-list=path_* --gzip --result-file="dumps/${site}/${site}-${dateTime}-path-alias${preDUpgradeFlag}.sql"`)
+  execSync(`ddev drush "@${site}" sql:dump --tables-list=taxonomy_* --gzip --result-file="dumps/${site}/${site}-${dateTime}-taxon${preDUpgradeFlag}.sql"`)
 
   if(isLocal) return
 
-  execSync(`aws s3 cp "${webCtx}/dumps/${site}/${site}-${dateTime}-path-alias.sql.gz" "${S3_URL_YEAR_MONTH}/${site}/${site}-${dateTime}-path-alias${preDrupalUpgrade}.sql.gz"`)
-  execSync(`aws s3 cp "${webCtx}/dumps/${site}/${site}-${dateTime}-taxon.sql.gz" "${S3_URL_YEAR_MONTH}/${site}/${site}-${dateTime}-taxon${preDrupalUpgrade}.sql.gz"`)
+  execSync(`aws s3 cp "${webCtx}/dumps/${site}/${site}-${dateTime}-path-alias.sql.gz" "${S3_URL_YEAR_MONTH}/${site}/${site}-${dateTime}-path-alias${preDUpgradeFlag}.sql.gz"`)
+  execSync(`aws s3 cp "${webCtx}/dumps/${site}/${site}-${dateTime}-taxon.sql.gz" "${S3_URL_YEAR_MONTH}/${site}/${site}-${dateTime}-taxon${preDUpgradeFlag}.sql.gz"`)
 
   execSync(`rm ${webCtx}/dumps/${site}/${site}-${dateTime}-path-alias.sql.gz`)
   execSync(`rm ${webCtx}/dumps/${site}/${site}-${dateTime}-taxon.sql.gz`)
