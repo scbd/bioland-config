@@ -74,7 +74,7 @@ export function backUpSite(branch, site, { preDrupalUpgrade } = { preDrupalUpgra
 }
 
 function backUpPathAlias(branch, site, { preDrupalUpgrade } = { preDrupalUpgrade: false }){
-  const { S3_URL_YEAR_MONTH, dateTime } = getTimeParams( branch)
+  const { S3_URL, S3_URL_YEAR_MONTH, dateTime } = getTimeParams( branch)
   const { isLocal                     } = config        [branch]
 
   execSync(`cd ${webCtx}`)
