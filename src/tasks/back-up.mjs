@@ -18,7 +18,7 @@ function backUpAll(branch){
   const { sites }  = config[branch]
 
   for (const site in sites)
-    processSite(branch, site)
+    await backUpSite(branch, site)
 }
 
 function getTimeParams(branch){
