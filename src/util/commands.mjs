@@ -1,7 +1,7 @@
 import changeCase from 'change-case'
 
 const   generalCommands   = [ 'backUp', 'cache',  'initBranch', 'updateDb', 'maintenanceModeOn' ] //'createBranch',
-const   biolandCommands   = [ 'initSite', 'gbif', 'blUsers', 'blUsersPasswords' ]
+const   biolandCommands   = [ 'initSite', 'gbif', 'blUsers', 'blUsersPasswords', 'loadDemoData' ]
 const   commands          = [ ...generalCommands, ...biolandCommands ]
 const   branches          = [ 'prod', 'test', 'demo' ]
 const { INIT_CWD        } = process.env
