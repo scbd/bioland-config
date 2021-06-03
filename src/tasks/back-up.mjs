@@ -36,30 +36,32 @@ function getTimeParams(branch){
   return { S3_URL, S3_URL_YEAR_MONTH, dateTime }
 }
 
-export function backUpSite(branch, site){
+export function backUpSite(branch, site, { preDrupalUpgrade } = { preDrupalUpgrade: false }){
   const { S3_URL , S3_URL_YEAR_MONTH, dateTime } = getTimeParams(branch)
   const { isLocal                              } = config       [branch]
 
   backUpPathAlias(branch, site)
   execSync(`cd ${webCtx}`)
 
+  const preDrupalUpgradeFlag = preDrupalUpgrade? '-drupal-upgrade' : ''
+
   execSync(`mkdir -p ${webCtx}/dumps/${site}`)
-  execSync(`ddev drush "@${site}" sql:dump --structure-tables-list=cache,cache_*,watchdog --gzip --result-file="dumps/${site}/${site}-${dateTime}.sql"`)
-  execSync(`tar -czf "${webCtx}/dumps/${site}/${site}-${dateTime}-site.tgz" "${webCtx}/sites/${site}"`)
+  execSync(`ddev drush "@${site}" sql:dump --structure-tables-list=cache,cache_*,watchdog --gzip --result-file="dumps/${site}/${site}-${dateTime}${preDrupalUpgradeFlag}.sql"`)
+  execSync(`tar -czf "${webCtx}/dumps/${site}/${site}-${dateTime}-site${preDrupalUpgradeFlag}.tgz" "${webCtx}/sites/${site}"`)
 
   console.log('')
   consola.info(`${site}: dumped and files tared and gzipped`)
 
   if(isLocal) return //do not send to s3
 
-  execSync(`aws s3 cp "${webCtx}/dumps/${site}/${site}-${dateTime}-site.tgz" "${S3_URL_YEAR_MONTH}/${site}/${site}-${dateTime}-site.tgz"`)
-  execSync(`aws s3 cp "${webCtx}/dumps/${site}/${site}-${dateTime}.sql.gz" "${S3_URL_YEAR_MONTH}/${site}/${site}-${dateTime}.sql.gz"`)
+  execSync(`aws s3 cp "${webCtx}/dumps/${site}/${site}-${dateTime}-site.tgz" "${S3_URL_YEAR_MONTH}/${site}/${site}-${dateTime}-site${preDrupalUpgradeFlag}.tgz"`)
+  execSync(`aws s3 cp "${webCtx}/dumps/${site}/${site}-${dateTime}.sql.gz" "${S3_URL_YEAR_MONTH}/${site}/${site}-${dateTime}${preDrupalUpgradeFlag}.sql.gz"`)
 
   console.log('')
   consola.info(`${site}: transfered to ${S3_URL_YEAR_MONTH}/${site}/${site}-${dateTime}`)
 
-  execSync(`aws s3 cp "${webCtx}/dumps/${site}/${site}-${dateTime}-site.tgz" "${S3_URL}/${site}-latest-site.tgz"`)
-  execSync(`aws s3 cp "${webCtx}/dumps/${site}/${site}-${dateTime}.sql.gz" "${S3_URL}/${site}-latest.sql.gz"`)
+  if(!preDrupalUpgradeFlag) execSync(`aws s3 cp "${webCtx}/dumps/${site}/${site}-${dateTime}-site.tgz" "${S3_URL}/${site}-latest-site.tgz"`)
+  if(!preDrupalUpgradeFlag) execSync(`aws s3 cp "${webCtx}/dumps/${site}/${site}-${dateTime}.sql.gz" "${S3_URL}/${site}-latest.sql.gz"`)
 
   console.log('')
   consola.info(`${site}: transfered to ${S3_URL}}/${site}-latest-*`)
@@ -70,7 +72,7 @@ export function backUpSite(branch, site){
   consola.info(`${site}: backup files removed`)
 }
 
-function backUpPathAlias(branch, site){
+function backUpPathAlias(branch, site, { preDrupalUpgrade } = { preDrupalUpgrade: false }){
   const { S3_URL_YEAR_MONTH, dateTime } = getTimeParams( branch)
   const { isLocal                     } = config        [branch]
 
@@ -78,14 +80,16 @@ function backUpPathAlias(branch, site){
   //const taxons = `taxonomy_term_data,taxonomy_term_field_data,taxonomy_term__field_cbd_country_group,taxonomy_term__field_cbd_id,taxonomy_term__field_country_cbd_guid,taxonomy_term__field_date,taxonomy_term__field_gef_id,taxonomy_term__field_image,taxonomy_term__field_image_url,taxonomy_term__field_index,taxonomy_term__field_iso3l_code,taxonomy_term__field_iso_code,taxonomy_term__field_is_un_country,taxonomy_term__field_machine_name,taxonomy_term__field_official_name,taxonomy_term__field_planning_item_type,taxonomy_term__field_protected_planet_id,taxonomy_term__field_un_number,taxonomy_term__field_un_official_short_name,taxonomy_term__field_un_region,taxonomy_term__field_url,taxonomy_term__field_www_id, taxonomy_term__parent`
   
   execSync(`mkdir -p ${webCtx}/dumps/${site}`)
-  
-  execSync(`ddev drush "@${site}" sql:dump --tables-list=path_* --gzip --result-file="dumps/${site}/${site}-${dateTime}-path-alias.sql"`)
-  execSync(`ddev drush "@${site}" sql:dump --tables-list=taxonomy_* --gzip --result-file="dumps/${site}/${site}-${dateTime}-taxon.sql"`)
+
+  const preDUpgradeFlag = preDrupalUpgrade? '-drupal-upgrade' : ''
+
+  execSync(`ddev drush "@${site}" sql:dump --tables-list=path_* --gzip --result-file="dumps/${site}/${site}-${dateTime}-path-alias${preDrupalUpgrade}.sql"`)
+  execSync(`ddev drush "@${site}" sql:dump --tables-list=taxonomy_* --gzip --result-file="dumps/${site}/${site}-${dateTime}-taxon${preDrupalUpgrade}.sql"`)
 
   if(isLocal) return
 
-  execSync(`aws s3 cp "${webCtx}/dumps/${site}/${site}-${dateTime}-path-alias.sql.gz" "${S3_URL_YEAR_MONTH}/${site}/${site}-${dateTime}-path-alias.sql.gz"`)
-  execSync(`aws s3 cp "${webCtx}/dumps/${site}/${site}-${dateTime}-taxon.sql.gz" "${S3_URL_YEAR_MONTH}/${site}/${site}-${dateTime}-taxon.sql.gz"`)
+  execSync(`aws s3 cp "${webCtx}/dumps/${site}/${site}-${dateTime}-path-alias.sql.gz" "${S3_URL_YEAR_MONTH}/${site}/${site}-${dateTime}-path-alias${preDrupalUpgrade}.sql.gz"`)
+  execSync(`aws s3 cp "${webCtx}/dumps/${site}/${site}-${dateTime}-taxon.sql.gz" "${S3_URL_YEAR_MONTH}/${site}/${site}-${dateTime}-taxon${preDrupalUpgrade}.sql.gz"`)
 
   execSync(`rm ${webCtx}/dumps/${site}/${site}-${dateTime}-path-alias.sql.gz`)
   execSync(`rm ${webCtx}/dumps/${site}/${site}-${dateTime}-taxon.sql.gz`)

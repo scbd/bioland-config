@@ -29,9 +29,8 @@ async function updateSite(branch, site) {
 
     execSync(`ddev drush @${site} sset system.maintenance_mode 0`)
 
-    await backUpSite(branch, site)
-    await preUpgrade(branch, site)
-
+    await backUpSite(branch, site, { preDrupalUpgrade: true })
+    //await preUpgrade(branch, site)
 
     patchDrupal()
 
