@@ -5,13 +5,8 @@ import { replaceInFile } from '../../util/files.mjs'
 // import { parse } from 'shell-quote'
 import consola from 'consola'
 import { getCountries } from '../../util/countries.mjs'
-import initSite from './init-site.mjs'
 
-export const initSiteTask = async(branch, args) => {
-  await (runTask(branch))(initSite, `Initiating new site ${args.site}`, [args])
-  
-  notifyDone()()
-}
+
 
 export const createAdminTask = async(branch, { email, pass, name }) => {
   await (runTask(branch))(createAdmin, `Creating Admin User ${email}`, [{ email, pass, name }])
@@ -67,48 +62,7 @@ export const blConfigDefaultTask = async(branch) => {
   notifyDone()()
 }
 
-// ddev drush -y @acb cset slick.optionset.slideshow options.settings.autoplay 1
-// TODO sql bioland---footer---bioland- update country codes
-async function blConfigDefault(branch){ 
-  const countryMap = await getCountries()
 
-  const { sites } = config[branch]
-  const homeDir  = process.env.BL_HOME? process.env.BL_HOME : `/home/ubuntu/${branch}`
-  const siteHome = `${homeDir}/web`
-
-  execSync(`cd ${siteHome}`)
-
-  for (const site in sites) {
-    try {
-      const logoString = sites[site].logo? sites[site].logo : `https://www.chm-cbd.net/sites/default/files/images/flags/flag-${site}.png`
-      const logo       = logoString.startsWith('http')? logoString : `public://${logoString}`
-
-      execSync(`ddev drush -y @${site} cset slick.optionset.slideshow options.settings.autoplay 1`)
-      execSync(`ddev drush -y @${site} cset biotheme.settings logo.path "${logo}"`)
-
-      // execSync(`ddev drush -y @${site} pm:uninstall webform_ui`)
-      // execSync(`ddev drush -y @${site} pm:uninstall webform_bootstrap`)
-      // execSync(`ddev drush -y @${site} pm:uninstall webform_node`)
-      // execSync(`ddev drush -y @${site} pm:uninstall webform`)
-
-
-      if(countryMap[site])
-        spawnSync('ddev',['drush', '-y', `@${site}`, 'cset', 'block.block.biolandfooterbiolandlinks', 'settings.label', `"${parse(countryMap[site].name[sites[site].locale])}"`])
-
-      console.log('')
-      consola.info(`${site}: config updated`)
-
-      execSync(`ddev drush @${site} cr`)
-
-      
-      console.log('')
-      consola.info(`${site}: cache rebuilt`)
-    }
-    catch(e){
-      consola.error(`${site}:  blConfigDefault`, e)
-    }
-  }
-}
 
 
 
@@ -125,7 +79,7 @@ async function blConfigDefault(branch){
 //   return cMap
 // }
 
-function blUsers (branch) {
+export function blUsers (branch) {
   const homeDir  = process.env.BL_HOME? process.env.BL_HOME : `/home/ubuntu/${branch}`
   const siteHome = `${homeDir}/web`
 
@@ -428,7 +382,7 @@ function cacheRebuild (branch) {
   }
 }
 
-function gbif(branch) {
+export function gbif(branch) {
   const { sites } = config[branch]
   const homeDir   = process.env.BL_HOME? process.env.BL_HOME : `/home/ubuntu/${branch}`
   const siteHome  = `${homeDir}/web`

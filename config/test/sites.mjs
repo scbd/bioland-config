@@ -3,52 +3,52 @@
 import { locale, locales } from '../util.mjs'
 
 const environment = 'test'
-// not migrated!!!!! https://test-ne.chm-cbd.net/ https://test-om.chm-cbd.net/
+
 export default {
   //
-  demo: { chmGovernment: 'MYS', environment, logo: 'fiji.png', locale, locales }, 
+  demo: { chmGovernment: 'MYS', environment, logo: 'fiji.png', locale, locales:[ 'ar', 'en', 'es', 'fr',  'ru', 'zh' ] }, 
 
-  bf  : { chmGovernment: 'BFA', environment, locale, locales },
-  bj  : { chmGovernment: 'BEN', environment, locale, locales },
-  cm  : { chmGovernment: 'CMR', environment, locale, locales },
-  cd  : { chmGovernment: 'COD', environment, locale, locales },
+  // bf  : { chmGovernment: 'BFA', environment, locale, locales },
+  // bj  : { chmGovernment: 'BEN', environment, locale, locales },
+  // cm  : { chmGovernment: 'CMR', environment, locale, locales },
+  // cd  : { chmGovernment: 'COD', environment, locale, locales },
   ci  : { chmGovernment: 'CIV', environment, locale, locales },
-  gn  : { chmGovernment: 'GIN', environment, locale, locales },
-  gw  : { chmGovernment: 'GNB', environment, locale, locales },
-  mg  : { chmGovernment: 'MDG', environment, locale, locales },
-  ma  : { chmGovernment: 'MAR', environment, locale, locales },
-  tg  : { chmGovernment: 'TGO', environment, locale, locales },
-  ch  : { chmGovernment: 'CHE', environment, locale, locales },
-  ne  : { chmGovernment: 'NER', environment, locale, locales: ['en', 'fr'] },
+  // gn  : { chmGovernment: 'GIN', environment, locale, locales },
+  // gw  : { chmGovernment: 'GNB', environment, locale, locales },
+  // mg  : { chmGovernment: 'MDG', environment, locale, locales },
+  // ma  : { chmGovernment: 'MAR', environment, locale, locales },
+  // tg  : { chmGovernment: 'TGO', environment, locale, locales },
+  // ch  : { chmGovernment: 'CHE', environment, locale, locales },
+  // ne  : { chmGovernment: 'NER', environment, locale, locales: ['en', 'fr'] },
   om  : { chmGovernment: 'OMN', environment, locale, locales: ['en', 'ar'] },
 
-  // bioland20200310
-  // my th ph sg id  5
-  my  : { chmGovernment: 'MYS', environment, locale, locales },
-  th  : { chmGovernment: 'THA', environment, locale, locales },
-  ph  : { chmGovernment: 'PHL', environment, locale, locales },
-  sg  : { chmGovernment: 'SGP', environment, locale, locales },
-  id  : { chmGovernment: 'IDN', environment, locale, locales },
+  // // bioland20200310
+  // // my th ph sg id  5
+  // my  : { chmGovernment: 'MYS', environment, locale, locales },
+  // th  : { chmGovernment: 'THA', environment, locale, locales },
+  // ph  : { chmGovernment: 'PHL', environment, locale, locales },
+  // sg  : { chmGovernment: 'SGP', environment, locale, locales },
+  // id  : { chmGovernment: 'IDN', environment, locale, locales },
 
-  // bioland-v3.5.1
-  // gy om ps ug 5
-  gy  : { chmGovernment: 'GUY', environment, locale, locales },
-  ps  : { chmGovernment: 'PSE', environment, locale, locales },
-  ug  : { chmGovernment: 'UGA', environment, locale, locales },
+  // // bioland-v3.5.1
+  // // gy om ps ug 5
+  // gy  : { chmGovernment: 'GUY', environment, locale, locales },
+  // ps  : { chmGovernment: 'PSE', environment, locale, locales },
+  // ug  : { chmGovernment: 'UGA', environment, locale, locales },
 
-  // bioland-v3.6
-  // eg 1
-  eg  : { chmGovernment: 'EGY', environment, locale, locales },
+  // // bioland-v3.6
+  // // eg 1
+  // eg  : { chmGovernment: 'EGY', environment, locale, locales },
 
-  // bioland-v3.7
-  // han-demo nl bt lb kw 4
-  nl: { chmGovernment: 'NLD', environment, locale, locales },
-  bt: { chmGovernment: 'BTN', environment, locale, locales },
-  lb: { chmGovernment: 'LBN', environment, locale, locales  },
-  kw: { chmGovernment: 'KWT', environment, locale:'ar', locales:['ar', 'en'] },
+  // // bioland-v3.7
+  // // han-demo nl bt lb kw 4
+  // nl: { chmGovernment: 'NLD', environment, locale, locales },
+  // bt: { chmGovernment: 'BTN', environment, locale, locales },
+  // lb: { chmGovernment: 'LBN', environment, locale, locales  },
+  // kw: { chmGovernment: 'KWT', environment, locale:'ar', locales:['ar', 'en'] },
 
   //new
-  vn: { chmGovernment: 'VNM', environment, locale, locales }
+  vn: { killCache: true, chmGovernment: 'VNM', environment, locale, locales:[ 'ar', 'en', 'es', 'fr',  'ru', 'zh' ] }
 }
 
 // errors gw my om ps eg bt lb

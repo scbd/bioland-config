@@ -19,8 +19,8 @@ export const getBranch = (alt=false)=>{
 }
 
 export const getArgs = () => {
-  const index = getBranchFromProps()? 3 : 2
-  
+  const index = getBranchFromProps()? 5 : 4
+
   return process.argv.slice(index)
 }
 

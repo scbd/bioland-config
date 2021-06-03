@@ -15,7 +15,7 @@ export default (() => {
   const baseUrls               = isLocal             ? [`bioland.${name}`]   : [`${name}.chm-cbd.net`,'chm-cbd.net']
   const defaultSmtpCredentials = username && password? { username, password} : undefined
 
-  makeUrls(sites, baseUrls)
+  makeUrls(name, sites, baseUrls, isLocal, httpPort)
 
   return { name, sites, siteCodes, routePriority, httpPort, httpsPort, isLocal, hostDbPort, defaultSmtpCredentials, getFqdn, getHostedZoneId }
 })()

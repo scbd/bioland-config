@@ -1,3 +1,5 @@
+import consola from "consola"
+
 const HostedZoneIdMap = initHostedZoneMap()
 const FqdnMap         = initFqdnMap()
 
@@ -5,7 +7,7 @@ export const isLocal =  !!process.env.BL_LOCAL
 export const locale  =  'en'
 export const locales = ['en']
 
-export const makeUrls = (sites, baseUrls)=>{
+export const makeUrls = (branch, sites, baseUrls, isLocal, port)=>{
   for (const code in sites) {
     const urls = baseUrls.map((urlBase)=> `${code}.${urlBase}`)
 
@@ -25,9 +27,23 @@ export const makeUrls = (sites, baseUrls)=>{
 
     for (const url of sites[code].urls)
       sites[code].urlObjects.push({ url , name: getServiceName(url) })
+
+    sites[code].host = getHostUrl(branch, sites[code], isLocal, port)
   }
+
+  
 }
 
+function getHostUrl(branch, { redirectTo, urls }, isLocal, port){
+
+  const onlyOne = urls.length == 1? urls[0] : ''
+  const base =   urls.filter(x => !getServiceName(x) || getServiceName(x) === branch)
+  const target = redirectTo || onlyOne || base
+
+  return isLocal? `http://${target}:${port}` : `https://${target}`
+
+
+}
 // get cdn or server if multiple sub domains
 export const getFqdn = (url)=>{
   const rootDomain      = '.chm-cbd.net'
@@ -93,11 +109,3 @@ function initFqdnMap (){
 
   return map
 }
-// function getAllServiceNames(sites){
-//   const services = []
-
-//   for (const code in sites)
-//     services.push(...sites[code].serviceNames)
-
-//   return Array.from(new Set(services))
-// }

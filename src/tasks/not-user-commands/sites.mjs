@@ -32,7 +32,7 @@ function createSitesDirectories(branch){
   for (const code in sites) {
     fs.ensureDirSync(`${sitesCtx}/${code}`)
     fs.ensureFileSync(`${sitesCtx}/${code}/settings.php`)
-    cpLogo(code, sites[code])
+    // cpLogo(code, sites[code])
     writeFile(`${sitesCtx}/${code}`, `settings.php`, template({...sites[code], code}))
   }
 }
@@ -50,19 +50,4 @@ function getSitesPhpTemplate(name, sites){
   return `<?php
 ${templateString}
 `
-}
-
-function cpLogo(name, site){
-  const logo   = site.logo? `/home/ubuntu/efs/bioland-templates/other/${site.logo}` : ''
-  const flag   = `/home/ubuntu/efs/bioland-templates/other/flags/${name}.png`
-  const flagTo = `${sitesCtx}/${name}/files/${name}.png`
-
-  if(logo && fs.existsSync(logo)){
-    fs.ensureDirSync(`${sitesCtx}/${name}/files`)
-
-    return fs.copySync(logo, `${sitesCtx}/${name}/files/${site.logo}`)
-  }
-
-  else if(fs.existsSync(flag) && !fs.existsSync(flagTo))
-    return fs.copySync(flag, flagTo)
 }

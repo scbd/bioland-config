@@ -13,16 +13,3 @@ export const init = async (branch, isForkedProcess) => {
   notifyDone(isForkedProcess)()
 }
 
-export const getDomains = async (branch, isForkedProcess) => {
-
-  await (runTask(branch, isForkedProcess))(tasks.getDomains, 'getBranchDomains')
-
-  notifyDone(isForkedProcess)()
-}
-
-export const getBaseDomains = async (branch, isForkedProcess) => {
-
-  await (runTask(branch, isForkedProcess))(tasks.getBaseDomains, 'getBranchBaseDomains')
-
-  notifyDone(isForkedProcess)()
-}
