@@ -37,7 +37,8 @@ async function loadDemoData(branch, site){
     execSync(`cp /home/ubuntu/efs/tmp/files.tgz ${sitesCtx}/${site}/files.tgz`)
     execSync(`tar -C ${sitesCtx}/${site} -zxf ${sitesCtx}/${site}/files.tgz`)
 
-    execSync(`ddev drush @${site} cr`)
+    console.log('')
+    consola.info(`${branch.toUpperCase()}: demo data loaded for site:${site}`)
 
     return
   }
