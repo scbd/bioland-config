@@ -1,7 +1,7 @@
 
 import { notifyDone, runTask }   from '../util/cli-feedback.mjs'
 import { execSync  } from 'child_process'
-import { webCtx     }            from '../util/context.mjs'
+import { webCtx, sitesCtx     }            from '../util/context.mjs'
 import   config                  from '../util/config.mjs'
 
 import { setBioTheme } from './not-user-commands/bl-init/index.mjs'
@@ -32,6 +32,11 @@ async function initSite(branch, site){
   try {
 
     execSync(`cd ${webCtx}`)
+
+    execSync(`ddev drush @${site} sql:cli < /home/ubuntu/efs/tmp/demo.sql`)
+
+    execSync(`cp /home/ubuntu/efs/tmp/files.tgz ${sitesCtx}/${site}/files.tgz`)
+    execSync(`tar -C ${sitesCtx}/${site} -zxf {sitesCtx}/${site}/files.tgz`)
 
     await setBioTheme(branch, site)
 

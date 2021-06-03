@@ -13,5 +13,5 @@ export default async (branch) => {
   await (runTask(branch))(initDockerOverride, 'initDockerOverride')
   await (runTask(branch))(initDns,            'initDns')
   
-  notifyDone(isForkedProcess)()
+  notifyDone()()
 }
