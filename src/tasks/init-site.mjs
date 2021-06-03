@@ -5,6 +5,7 @@ import { webCtx, sitesCtx     }            from '../util/context.mjs'
 import   config                  from '../util/config.mjs'
 
 import { setBioTheme } from './not-user-commands/bl-init/index.mjs'
+import { blUserFp } from './not-user-commands/bl-users.mjs'
 
 import consola from 'consola'
 
@@ -39,6 +40,8 @@ async function initSite(branch, site){
     execSync(`tar -C ${sitesCtx}/${site} -zxf {sitesCtx}/${site}/files.tgz`)
 
     await setBioTheme(branch, site)
+
+    //blUserFp(branch, site)
 
     execSync(`ddev drush @${site} cr`)
 

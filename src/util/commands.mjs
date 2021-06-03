@@ -1,6 +1,6 @@
 import changeCase from 'change-case'
 
-const   generalCommands   = [ 'backUp', 'cache',  'initBranch', 'updateDb' ] //'createBranch',
+const   generalCommands   = [ 'backUp', 'cache',  'initBranch', 'updateDb', 'maintenanceModeOn' ] //'createBranch',
 const   biolandCommands   = [ 'initSite', 'gbif', 'blUsers', 'blUsersPasswords' ]
 const   commands          = [ ...generalCommands, ...biolandCommands ]
 const   branches          = [ 'prod', 'test', 'demo' ]

@@ -2,7 +2,7 @@ import { execSync, } from 'child_process'
 import { webCtx   }  from '../../util/index.mjs'
 import   config      from '../../util/config.mjs'
 import   consola     from 'consola'
-
+import fps from '../../util/fps.mjs'
 
 
 export function blUsersPass (branch) {
@@ -183,7 +183,7 @@ function blUserSM (branch, site) {
     execSync(`ddev drush @${site} user:role:add "site_manager" bioland-sm@chm-cbd.net`)
 
     console.log('')
-    consola.info(`${site}: content_manager bioland-sm@chm-cbd.net created`)
+    consola.info(`${site}: "site_manager bioland-sm@chm-cbd.net created`)
     console.log('')
 
   }catch(e){
@@ -270,4 +270,31 @@ function blUserSupportPass (branch, site) {
     consola.error(`${site}: blUsers error`, e)
   }
 
+}
+
+
+export function blUserFp (branch, site) {
+  
+
+  try{
+    execSync(`cd ${webCtx}`)
+
+    const fp = getFp(site)
+
+    if(!fp) return
+
+    execSync(`ddev drush @${site} user:create "${fp.lastName}" --mail="${fp.email}" --password="${SUPPORT_PASS}" --quiet --notify`)
+    execSync(`ddev drush @${site} user:role:add ""site_manager" ${fp.email}`)
+
+    console.log('')
+    consola.info(`${site}: administrator support@chm-cbd.net created`)
+    console.log('')
+
+  }catch(e){
+    consola.error(`${site}: blUsers error`, e)
+  }
+}
+
+function getFp(site){
+  return fps.find(({ country }) =>  country===site)
 }
