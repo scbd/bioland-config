@@ -67,8 +67,8 @@ export function backUpSite(branch, site, { preDrupalUpgrade } = { preDrupalUpgra
   console.log('')
   consola.info(`${site}: transfered to ${S3_URL}}/${site}-latest-*`)
 
-  execSync(`rm ${webCtx}/dumps/${site}/${site}-${dateTime}-site.tgz`)
-  execSync(`rm ${webCtx}/dumps/${site}/${site}-${dateTime}.sql.gz`)
+  execSync(`rm ${webCtx}/dumps/${site}/${site}-${dateTime}${preDrupalUpgradeFlag}-site.tgz`)
+  execSync(`rm ${webCtx}/dumps/${site}/${site}-${dateTime}${preDrupalUpgradeFlag}.sql.gz`)
 
   consola.info(`${site}: backup files removed`)
 }
