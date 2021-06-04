@@ -46,7 +46,7 @@ export function backUpSite(branch, site, { preDrupalUpgrade } = { preDrupalUpgra
   const preDrupalUpgradeFlag = preDrupalUpgrade? '-drupal-upgrade' : ''
 
   execSync(`mkdir -p ${webCtx}/dumps/${site}`)
-  execSync(`ddev drush "@${site}" sql:dump --structure-tables-list=cache,cache_*,watchdog --gzip --result-file="dumps/${site}/${site}-${dateTime}${preDrupalUpgradeFlag}.sql"`)
+  execSync(`ddev drush @${site} sql:dump --structure-tables-list=cache,cache_*,watchdog --gzip --result-file="dumps/${site}/${site}-${dateTime}${preDrupalUpgradeFlag}.sql"`)
   execSync(`tar -czf "${webCtx}/dumps/${site}/${site}-${dateTime}-site${preDrupalUpgradeFlag}.tgz" "${webCtx}/sites/${site}"`)
 
   console.log('')
@@ -84,8 +84,8 @@ function backUpPathAlias(branch, site, { preDrupalUpgrade } = { preDrupalUpgrade
 
   const preDUpgradeFlag = preDrupalUpgrade? '-drupal-upgrade' : ''
 
-  execSync(`ddev drush "@${site}" sql:dump --tables-list=path_* --gzip --result-file="dumps/${site}/${site}-${dateTime}-path-alias${preDUpgradeFlag}.sql"`)
-  execSync(`ddev drush "@${site}" sql:dump --tables-list=taxonomy_* --gzip --result-file="dumps/${site}/${site}-${dateTime}-taxon${preDUpgradeFlag}.sql"`)
+  execSync(`ddev drush @${site} sql:dump --tables-list=path_* --gzip --result-file="dumps/${site}/${site}-${dateTime}-path-alias${preDUpgradeFlag}.sql"`)
+  execSync(`ddev drush @${site} sql:dump --tables-list=taxonomy_* --gzip --result-file="dumps/${site}/${site}-${dateTime}-taxon${preDUpgradeFlag}.sql"`)
 
   if(isLocal) return
 
