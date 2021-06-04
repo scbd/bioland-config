@@ -61,8 +61,8 @@ export function backUpSite(branch, site, { preDrupalUpgrade } = { preDrupalUpgra
   console.log('')
   consola.info(`${site}: transfered to ${S3_URL_YEAR_MONTH}/${site}/${site}-${dateTime}`)
 
-  execSync(`aws s3 cp "${webCtx}/dumps/${site}/${site}-${dateTime}-site.tgz" "${S3_URL}/${site}-latest-site${preDrupalUpgradeFlag}.tgz"`)
-  execSync(`aws s3 cp "${webCtx}/dumps/${site}/${site}-${dateTime}.sql.gz" "${S3_URL}/${site}-latest${preDrupalUpgradeFlag}.sql.gz"`)
+  execSync(`aws s3 cp "${webCtx}/dumps/${site}/${site}-${dateTime}-site${preDrupalUpgradeFlag}.tgz" "${S3_URL}/${site}-latest-site${preDrupalUpgradeFlag}.tgz"`)
+  execSync(`aws s3 cp "${webCtx}/dumps/${site}/${site}-${dateTime}${preDrupalUpgradeFlag}.sql.gz" "${S3_URL}/${site}-latest${preDrupalUpgradeFlag}.sql.gz"`)
 
   console.log('')
   consola.info(`${site}: transfered to ${S3_URL}}/${site}-latest-*`)
