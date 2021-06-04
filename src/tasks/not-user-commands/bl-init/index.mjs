@@ -11,7 +11,7 @@ export const setBioTheme = async (branch, site) => {
   consola.info('site', site)
   consola.info('countryMap[site]', countryMap[site])
 
-  execSync(`ddev drush -y @${site} cset slick.optionset.slideshow options.settings.autoplay 1`)
+  execSync(`ddev drush -y @${site} cset slick.optionset.slideshow options.settings.autoplay 0`)
 
   spawnSync('ddev', ['drush', '-y', `@${site}`, 'cset', 'system.site', 'name', `--value="${parse(countryMap[site].name['en'])} Biodiversity"`])
   spawnSync('ddev', ['drush', '-y', `@${site}`, 'cset', 'system.site', 'slogan', `"National Clearing House Mechanism"`])
