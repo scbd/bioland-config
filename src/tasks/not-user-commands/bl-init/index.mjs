@@ -85,6 +85,7 @@ async function getDrupalCountryId(branch, database){
   const [ rows ] = await connection.execute(query, [countryName]);
   const { uuid } = rows[0]
   
+  connection.destroy()
   return uuid
 }
 
