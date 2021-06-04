@@ -76,6 +76,7 @@ async function preUpgrade(branch, database){
   
   connection.execute(query2, [database]);
 
-  connection.destroy()
-  return connection.execute(query, [database]);
+  await connection.execute(query, [database]);
+
+  return connection.destroy()
 }
