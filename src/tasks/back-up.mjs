@@ -54,8 +54,8 @@ export function backUpSite(branch, site, { preDrupalUpgrade } = { preDrupalUpgra
 
   if(isLocal) return //do not send to s3
 
-  execSync(`aws s3 cp "${webCtx}/dumps/${site}/${site}-${dateTime}-site.tgz" "${S3_URL_YEAR_MONTH}/${site}/${site}-${dateTime}-site${preDrupalUpgradeFlag}.tgz"`)
-  execSync(`aws s3 cp "${webCtx}/dumps/${site}/${site}-${dateTime}.sql.gz" "${S3_URL_YEAR_MONTH}/${site}/${site}-${dateTime}${preDrupalUpgradeFlag}.sql.gz"`)
+  execSync(`aws s3 cp "${webCtx}/dumps/${site}/${site}-${dateTime}-site${preDrupalUpgradeFlag}.tgz" "${S3_URL_YEAR_MONTH}/${site}/${site}-${dateTime}-site${preDrupalUpgradeFlag}.tgz"`)
+  execSync(`aws s3 cp "${webCtx}/dumps/${site}/${site}-${dateTime}${preDrupalUpgradeFlag}.sql.gz" "${S3_URL_YEAR_MONTH}/${site}/${site}-${dateTime}${preDrupalUpgradeFlag}.sql.gz"`)
 
 
   console.log('')
