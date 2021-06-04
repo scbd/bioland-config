@@ -40,7 +40,7 @@ export function backUpSite(branch, site, { preDrupalUpgrade } = { preDrupalUpgra
   const { S3_URL , S3_URL_YEAR_MONTH, dateTime } = getTimeParams(branch)
   const { isLocal                              } = config       [branch]
 
-  backUpPathAlias(branch, site)
+  backUpPathAlias(branch, site, { preDrupalUpgrade })
   execSync(`cd ${webCtx}`)
 
   const preDrupalUpgradeFlag = preDrupalUpgrade? '-drupal-upgrade' : ''
