@@ -1,7 +1,7 @@
 import   SA                    from 'superagent'
 import { spawnSync, execSync } from 'child_process'
 import   config                from '../../../util/config.mjs'
-
+import consola from 'consola'
 const $http  = SA.agent()
 const global = { enabled: false }
 
@@ -60,8 +60,9 @@ export function enableJsonApi(site){
   global.$http = undefined
 
   spawnSync('ddev', [ 'drush', '-y', `@${site}`, 'en', 'jsonapi' ])
-  spawnSync('ddev', [ 'drush', '-y', `@${site}`, 'cset', 'jsonapi.settings', 'read_only', `--format=boolean`, `--value=0` ])
 
+  spawnSync('ddev', [ 'drush', '-y', `@${site}`, 'cset', 'jsonapi.settings', 'read_only', `--format=boolean`, `--value=0` ])
+  consola.error('jsonapi.settings')
   execSync(`ddev drush @${site} cr`)
 
   global.enabled = site
