@@ -76,7 +76,7 @@ async function preUpgrade(branch, database){
 
 
 
-  const query      = `SELECT CONCAT(DROP TABLE', TABLE_SCHEMA, '.', TABLE_NAME, ';') from INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME LIKE 'entity_subqueu%' AND TABLE_SCHEMA = ?;`
+  const query      = `SELECT CONCAT('DROP TABLE', TABLE_SCHEMA, '.', TABLE_NAME, ';') from INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME LIKE 'entity_subqueu%' AND TABLE_SCHEMA = ?;`
 
   await connection.execute(query, [database]);
 
