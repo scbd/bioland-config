@@ -66,8 +66,8 @@ async function preUpgrade(branch, database){
   const { hostDbPort :port }                             = config[branch]
 
   const connection = await mysql.createConnection({ host, user, password, database,  port});
-  
-  // create the connection
+
+  // create the connection tmp_42864
 
   const query2      = `SELECT CONCAT('DROP TABLE', TABLE_SCHEMA, '.', TABLE_NAME, ';') from INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME LIKE 'tmp_42864%' AND TABLE_SCHEMA = ?;`
   
@@ -76,7 +76,7 @@ async function preUpgrade(branch, database){
 
 
 
-  const query      = `SELECT CONCAT('TRUNCATE TABLE', TABLE_SCHEMA, '.', TABLE_NAME, ';') from INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME LIKE 'entity_subqueu%' AND TABLE_SCHEMA = ?;`
+  const query      = `SELECT CONCAT(DROP TABLE', TABLE_SCHEMA, '.', TABLE_NAME, ';') from INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME LIKE 'entity_subqueu%' AND TABLE_SCHEMA = ?;`
 
   await connection.execute(query, [database]);
 
