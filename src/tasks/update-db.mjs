@@ -27,10 +27,10 @@ async function updateSite(branch, site) {
   try{
     execSync(`cd ${webCtx}`)
 
-    //execSync(`ddev drush @${site} sset system.maintenance_mode 1`)
+    execSync(`ddev drush @${site} sset system.maintenance_mode 1`)
 
     await backUpSite(branch, site, { preDrupalUpgrade: true })
-    await preUpgrade(branch, site)
+    //await preUpgrade(branch, site)
 
     patchDrupal()
 
@@ -46,7 +46,7 @@ async function updateSite(branch, site) {
     console.log('')
     consola.info(`${site}: site updated`)
 
-    //execSync(`ddev drush @${site} sset system.maintenance_mode 0`)
+    execSync(`ddev drush @${site} sset system.maintenance_mode 0`)
   }catch(e){
     consola.error(`${site}: update error`, e)
   }

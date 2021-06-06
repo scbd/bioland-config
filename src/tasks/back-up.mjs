@@ -39,6 +39,7 @@ function getTimeParams(branch){
 export function backUpSite(branch, site, { preDrupalUpgrade } = { preDrupalUpgrade: false }){
   const { S3_URL , S3_URL_YEAR_MONTH, dateTime } = getTimeParams(branch)
   const { isLocal                              } = config       [branch]
+  
   exec(`cpulimit -P /usr/lib/tar -l 30`)
   backUpPathAlias(branch, site, { preDrupalUpgrade })
   execSync(`cd ${webCtx}`)
@@ -46,7 +47,6 @@ export function backUpSite(branch, site, { preDrupalUpgrade } = { preDrupalUpgra
   const preDrupalUpgradeFlag = preDrupalUpgrade? '-drupal-upgrade' : ''
 
   execSync(`mkdir -p ${webCtx}/dumps/${site}`)
-  //exec(`cpulimit -P /usr/lib/tar -l 30`)
   execSync(`ddev drush @${site} sql:dump --structure-tables-list=cache,cache_*,watchdog --gzip --result-file="dumps/${site}/${site}-${dateTime}${preDrupalUpgradeFlag}.sql"`)
   execSync(`tar -czf "${webCtx}/dumps/${site}/${site}-${dateTime}-site${preDrupalUpgradeFlag}.tgz" "${webCtx}/sites/${site}"`)
 
@@ -54,17 +54,13 @@ export function backUpSite(branch, site, { preDrupalUpgrade } = { preDrupalUpgra
   consola.info(`${site}: dumped and files tared and gzipped`)
 
   if(isLocal) return //do not send to s3
-  // execSync(`cpulimit -P /usr/local/bin/aws -l 30`)
   execSync(`aws s3 cp "${webCtx}/dumps/${site}/${site}-${dateTime}-site${preDrupalUpgradeFlag}.tgz" "${S3_URL_YEAR_MONTH}/${site}/${site}-${dateTime}-site${preDrupalUpgradeFlag}.tgz"`)
-  // execSync(`cpulimit -P /usr/local/bin/aws -l 30`)
   execSync(`aws s3 cp "${webCtx}/dumps/${site}/${site}-${dateTime}${preDrupalUpgradeFlag}.sql.gz" "${S3_URL_YEAR_MONTH}/${site}/${site}-${dateTime}${preDrupalUpgradeFlag}.sql.gz"`)
 
 
   console.log('')
   consola.info(`${site}: transfered to ${S3_URL_YEAR_MONTH}/${site}/${site}-${dateTime}`)
-  // execSync(`cpulimit -P /usr/local/bin/aws -l 30`)
   execSync(`aws s3 cp "${webCtx}/dumps/${site}/${site}-${dateTime}-site${preDrupalUpgradeFlag}.tgz" "${S3_URL}/${site}-latest-site${preDrupalUpgradeFlag}.tgz"`)
-  // execSync(`cpulimit -P /usr/local/bin/aws -l 30`)
   execSync(`aws s3 cp "${webCtx}/dumps/${site}/${site}-${dateTime}${preDrupalUpgradeFlag}.sql.gz" "${S3_URL}/${site}-latest${preDrupalUpgradeFlag}.sql.gz"`)
 
   console.log('')
