@@ -85,15 +85,17 @@ function backUpPathAlias(branch, site, { preDrupalUpgrade } = { preDrupalUpgrade
 
   execSync(`ddev drush @${site} sql:dump --tables-list=path_* --gzip --result-file="dumps/${site}/${site}-${dateTime}-path-alias${preDUpgradeFlag}.sql"`)
   execSync(`ddev drush @${site} sql:dump --tables-list=taxonomy_* --gzip --result-file="dumps/${site}/${site}-${dateTime}-taxon${preDUpgradeFlag}.sql"`)
+  execSync(`ddev drush @${site} sql:dump --tables-list=entity_subqueu* --gzip --result-file="dumps/${site}/${site}-${dateTime}-subqueue${preDUpgradeFlag}.sql"`)
 
   if(isLocal) return
 
   execSync(`aws s3 cp "${webCtx}/dumps/${site}/${site}-${dateTime}-path-alias${preDUpgradeFlag}.sql.gz" "${S3_URL_YEAR_MONTH}/${site}/${site}-${dateTime}-path-alias${preDUpgradeFlag}.sql.gz"`)
   execSync(`aws s3 cp "${webCtx}/dumps/${site}/${site}-${dateTime}-taxon${preDUpgradeFlag}.sql.gz" "${S3_URL_YEAR_MONTH}/${site}/${site}-${dateTime}-taxon${preDUpgradeFlag}.sql.gz"`)
-
+  execSync(`aws s3 cp "${webCtx}/dumps/${site}/${site}-${dateTime}-subqueue${preDUpgradeFlag}.sql.gz" "${S3_URL_YEAR_MONTH}/${site}/${site}-${dateTime}-subqueue${preDUpgradeFlag}.sql.gz"`)
 
   execSync(`aws s3 cp "${webCtx}/dumps/${site}/${site}-${dateTime}-path-alias${preDUpgradeFlag}.sql.gz" "${S3_URL}/${site}-latest-path-alias${preDUpgradeFlag}.sql.gz"`)
   execSync(`aws s3 cp "${webCtx}/dumps/${site}/${site}-${dateTime}-taxon${preDUpgradeFlag}.sql.gz" "${S3_URL}/${site}-latest-taxon${preDUpgradeFlag}.sql.gz"`)
+  execSync(`aws s3 cp "${webCtx}/dumps/${site}/${site}-${dateTime}-subqueue${preDUpgradeFlag}.sql.gz" "${S3_URL}/${site}-latest-subqueue${preDUpgradeFlag}.sql.gz"`)
 
   execSync(`rm ${webCtx}/dumps/${site}/${site}-${dateTime}-path-alias${preDUpgradeFlag}.sql.gz`)
   execSync(`rm ${webCtx}/dumps/${site}/${site}-${dateTime}-taxon${preDUpgradeFlag}.sql.gz`)
