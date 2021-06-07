@@ -33,6 +33,7 @@ async function updateSite(branch, site) {
     await preUpgrade(branch, site)
 
     patchDrupal()
+    patchDrupal01()
 
     execSync(`ddev drush -y @${site} updatedb -vvv`)
 
@@ -57,6 +58,14 @@ function patchDrupal(){
   const fileName     = '/web/core/lib/Drupal/Core/Entity/ContentEntityBase.php'
   const replaceCode  = 'if (!$this->getFieldDefinition($field_name)->isTranslatable()) {'
   const patchCode    = 'if ($this->getFieldDefinition($field_name) && !$this->getFieldDefinition($field_name)->isTranslatable()) {'
+
+  replaceInFile(fileName, replaceCode, patchCode)
+}
+
+function patchDrupal01(){
+  const fileName     = '/web/core/lib/Drupal/Core/Entity/Entity/EntityViewDisplay.php'
+  const replaceCode  = '$view_langcode = $entity->language()->getId();'
+  const patchCode    = '$view_langcode = ($entity->language() ? $entity->language()->getId() : NULL);'
 
   replaceInFile(fileName, replaceCode, patchCode)
 }
