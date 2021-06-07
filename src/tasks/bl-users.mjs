@@ -8,4 +8,5 @@ export default async(branch, args) => {
     await (runTask(branch))(blUsers, `${branch.toUpperCase()}: creating bioland users for All sites`)
     
   notifyDone()()
+  process.exit(0)
 }

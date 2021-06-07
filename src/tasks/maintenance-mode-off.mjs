@@ -12,43 +12,38 @@ import consola from 'consola'
 export default async(branch, args) => {
 
   if(args.length)
-    await (runTask(branch))(initSite, `${branch.toUpperCase()}: Initiating site: ${args[0]}`, args)
+    await (runTask(branch))(mmoAll, `${branch.toUpperCase()}: Initiating maintenance mode off Site: ${args[0]}`, args)
   else
-    await (runTask(branch))(initSites, `${branch.toUpperCase()}: Initiating ALL sites`)
+    await (runTask(branch))(mmoAll, `${branch.toUpperCase()}: Initiating maintenance mode off ALL sites`)
 
   notifyDone()()
-  process.exit(0)
 }
 
 
 
-async function initSites(branch){ 
+async function mmoAll(branch){ 
   const { sites } = config[branch]
 
   for (const site in sites)
-    await initSite(branch, site)
+    await mmo(branch, site)
 }
 
 
-async function initSite(branch, site){ 
+async function mmo(branch, site){ 
   try {
 
     execSync(`cd ${webCtx}`)
+    
+    consola.info(`${branch.toUpperCase()} Site: ${site} -> maintenance mode off`)
 
-    consola.info(`${branch.toUpperCase()} Site: ${site} -> initiating site`)
-
-    await setBioTheme(branch, site)
-
-    //blUserFp(branch, site)
+    execSync(`ddev drush @${site} sset system.maintenance_mode 0`)
 
     execSync(`ddev drush @${site} cr`)
 
+    process.exit(0)
     return
   }
   catch(e){
-    consola.error(`${site}: initSite `, e)
-
-    if(e?.response?.body?.errors)
-      consola.error(e.response.body.errors)
+    consola.error(`${site}: mmo off`, e)
   }
 }

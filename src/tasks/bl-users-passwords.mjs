@@ -8,4 +8,5 @@ export default async(branch, args) => {
     await (runTask(branch))(blUsersPass, `${branch.toUpperCase()}: changing bioland users passwords for all sites`)
 
   notifyDone()()
+  process.exit(0)
 }

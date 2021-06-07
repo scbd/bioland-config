@@ -14,6 +14,7 @@ export default async(branch, args) => {
     await (runTask(branch))(updateAll, `${branch.toUpperCase()}: drupal update db ALL sites`)
 
   notifyDone()()
+  process.exit(0)
 }
 
 async function updateAll(branch) {
@@ -26,6 +27,8 @@ async function updateAll(branch) {
 async function updateSite(branch, site) {
   try{
     execSync(`cd ${webCtx}`)
+    
+    consola.info(`${branch.toUpperCase()} Site: ${site} -> updating db to new drupal`)
 
     execSync(`ddev drush @${site} sset system.maintenance_mode 1`)
 
@@ -34,6 +37,7 @@ async function updateSite(branch, site) {
 
     patchDrupal()
     patchDrupal01()
+    patchDrupal02()
 
     execSync(`ddev drush -y @${site} updatedb -vvv`)
 
@@ -66,6 +70,14 @@ function patchDrupal01(){
   const fileName     = '/web/core/lib/Drupal/Core/Entity/Entity/EntityViewDisplay.php'
   const replaceCode  = '$view_langcode = $entity->language()->getId();'
   const patchCode    = '$view_langcode = ($entity->language() ? $entity->language()->getId() : NULL);'
+
+  replaceInFile(fileName, replaceCode, patchCode)
+}
+
+function patchDrupal02(){
+  const fileName     = '/web/core/lib/Drupal/Core/Entity/EntityAccessControlHandler.php'
+  const replaceCode  = '$langcode = $entity->language()->getId();'
+  const patchCode    = '$langcode = ($entity->language() ? $entity->language()->getId() : NULL);'
 
   replaceInFile(fileName, replaceCode, patchCode)
 }

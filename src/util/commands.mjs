@@ -63,10 +63,16 @@ function getBranchFromPath(){
 }
 
 function getBranchFromProps(alt = false){
-  const index     = alt? 2 : 3
-  const theBranch = process.argv[index]
+  // consola.error('process.argv',process.argv)
+  // consola.error('index',alt? 2 : 3)
+  // const index     = alt? 2 : 3
+  // const theBranch = process.argv[index]
 
-  if(isValidBranch(theBranch)) return theBranch
+  for (const arg of process.argv) {
+    if(isValidBranch(arg))
+      return arg
+  }
+  // if(isValidBranch(theBranch)) return theBranch
 
   return ''
 }

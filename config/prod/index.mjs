@@ -1,4 +1,5 @@
-import   sites                                         from './sites.mjs'
+import sites     from './sites.mjs'
+import redirects from './redirects.mjs'
 import { isLocal, makeUrls, getHostedZoneId, getFqdn } from '../util.mjs'
 
 const { PROD_SMTP_USERNAME: username, PROD_SMTP_PASSWORD: password } = process.env
@@ -17,5 +18,5 @@ export default (() => {
 
   makeUrls(name, sites, baseUrls, isLocal, httpPort)
 
-  return { name, sites, siteCodes, routePriority, httpPort, httpsPort, isLocal, hostDbPort, defaultSmtpCredentials, getFqdn, getHostedZoneId }
+  return { name, sites, siteCodes, routePriority, httpPort, httpsPort, isLocal, hostDbPort, defaultSmtpCredentials, getFqdn, getHostedZoneId, redirects }
 })()

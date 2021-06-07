@@ -16,7 +16,7 @@ function runCommand(){
 
   const theCommand = getCommand()
 
-  startFeedback(`BIOLAND-CONFIG: ${getBranch(true).toUpperCase()} => ${theCommand}`)
+  startFeedback(`BIOLAND-CONFIG: ${getBranch().toUpperCase()} => ${theCommand}`)
 
   runChildProcess(getCommand({ paramCase: true }))
 }

@@ -14,4 +14,5 @@ export default async (branch) => {
   await (runTask(branch))(initDns,            'initDns')
   
   notifyDone()()
+  process.exit(0)
 }

@@ -34,10 +34,13 @@ async function mmo(branch, site){
 
     execSync(`cd ${webCtx}`)
 
+    consola.info(`${branch.toUpperCase()} Site: ${site} -> maintenance mode on`)
+    
     execSync(`ddev drush @${site} sset system.maintenance_mode 1`)
 
     execSync(`ddev drush @${site} cr`)
 
+    process.exit(0)
     return
   }
   catch(e){

@@ -11,6 +11,7 @@ export default async(branch, args) => {
   else
     await (runTask(branch))(gbifAll, `${branch.toUpperCase()}: GBIF enable ALL sites`)
   notifyDone()()
+  process.exit(0)
 }
 
 
@@ -26,6 +27,8 @@ function gbifAll(branch) {
 function gbifSite(branch, site) {
 
   execSync(`cd ${webCtx}`)
+
+  consola.info(`${branch.toUpperCase()} Site: ${site} -> enabling GBIF`)
 
   try{
     execSync(`ddev drush -y @${site} en gbifstats`)

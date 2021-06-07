@@ -1,9 +1,8 @@
 import { notifyDone, runTask } from '../util/cli-feedback.mjs'
-import { execSync, exec   }          from 'child_process'
+import { execSync  , exec }    from 'child_process'
 import { webCtx     }          from '../util/context.mjs'
 import   config                from '../util/config.mjs'
 import   consola               from 'consola'
-
 
 export default async(branch, args) => {
   if(args.length)
@@ -12,6 +11,7 @@ export default async(branch, args) => {
     await (runTask(branch))(backUpAll, `${branch.toUpperCase()}: Backing up all sites`)
 
   notifyDone()()
+  process.exit(0)
 }
 
 async function backUpAll(branch){

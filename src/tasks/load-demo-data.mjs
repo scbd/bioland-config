@@ -15,6 +15,7 @@ export default async(branch, args) => {
     await (runTask(branch))(loadDemoDataAll, `${branch.toUpperCase()}: Load Demo Data on ALL sites`)
 
   notifyDone()()
+  process.exit(0)
 }
 
 
@@ -31,6 +32,8 @@ async function loadDemoData(branch, site){
   try {
 
     execSync(`cd ${webCtx}`)
+
+    consola.info(`${branch.toUpperCase()} Site: ${site} -> loading demo data`)
 
     execSync(`ddev drush @${site} sql:cli < /home/ubuntu/efs/tmp/demo.sql`)
 

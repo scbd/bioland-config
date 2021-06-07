@@ -10,6 +10,7 @@ export default async(branch, args) => {
   else
     await (runTask(branch))(cacheAll, `${branch.toUpperCase()}: Rebuilding cache  ALL sites`)
   notifyDone()()
+  process.exit(0)
 }
 
 function cacheAll(branch) {
@@ -25,6 +26,8 @@ function cacheAll(branch) {
 function cache(branch, site) {
 
   execSync(`cd ${webCtx}`)
+
+  consola.info(`${branch.toUpperCase()} Site: ${site} -> rebuilding cache`)
 
   try{
     execSync(`ddev drush @${site} cr`)
