@@ -35,6 +35,7 @@ async function initSite(branch, site){
 
     execSync(`cd ${webCtx}`)
 
+    console.log('')
     consola.info(`${branch.toUpperCase()} Site: ${site} -> initiating site`)
 
     await setBioTheme(branch, site)

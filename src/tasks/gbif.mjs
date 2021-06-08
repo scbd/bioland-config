@@ -28,6 +28,7 @@ function gbifSite(branch, site) {
 
   execSync(`cd ${webCtx}`)
 
+  console.log('')
   consola.info(`${branch.toUpperCase()} Site: ${site} -> enabling GBIF`)
 
   try{

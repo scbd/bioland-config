@@ -28,12 +28,13 @@ async function updateSite(branch, site) {
   try{
     execSync(`cd ${webCtx}`)
     
+    console.log('')
     consola.info(`${branch.toUpperCase()} Site: ${site} -> updating db to new drupal`)
 
     execSync(`ddev drush @${site} sset system.maintenance_mode 1`)
 
     await backUpSite(branch, site, { preDrupalUpgrade: true })
-    await preUpgrade(branch, site)
+    // await preUpgrade(branch, site)
 
     patchDrupal()
     patchDrupal01()
@@ -41,10 +42,10 @@ async function updateSite(branch, site) {
 
     execSync(`ddev drush -y @${site} updatedb -vvv`)
 
-    execSync(`aws s3 cp "s3://biolands/${branch}/${site}-latest-subqueue-drupal-upgrade.sql.gz" "/home/ubuntu/efs/tmp/${site}-latest-subqueue-drupal-upgrade.sql.gz" `)
-    execSync(`if test -f "/home/ubuntu/efs/tmp/${site}-latest-subqueue-drupal-upgrade.sql.gz"; then gunzip /home/ubuntu/efs/tmp/${site}-latest-subqueue-drupal-upgrade.sql.gz; fi;`)
-    execSync(`ddev drush @${site} sql:cli < /home/ubuntu/efs/tmp/${site}-latest-subqueue-drupal-upgrade.sql`)
-    execSync(`rm /home/ubuntu/efs/tmp/${site}-latest-subqueue-drupal-upgrade.sql`)
+    // execSync(`aws s3 cp "s3://biolands/${branch}/${site}-latest-subqueue-drupal-upgrade.sql.gz" "/home/ubuntu/efs/tmp/${site}-latest-subqueue-drupal-upgrade.sql.gz" `)
+    // execSync(`if test -f "/home/ubuntu/efs/tmp/${site}-latest-subqueue-drupal-upgrade.sql.gz"; then gunzip /home/ubuntu/efs/tmp/${site}-latest-subqueue-drupal-upgrade.sql.gz; fi;`)
+    // execSync(`ddev drush @${site} sql:cli < /home/ubuntu/efs/tmp/${site}-latest-subqueue-drupal-upgrade.sql`)
+    // execSync(`rm /home/ubuntu/efs/tmp/${site}-latest-subqueue-drupal-upgrade.sql`)
 
     execSync(`ddev drush -y @${site} cr`)
     
@@ -90,16 +91,16 @@ async function preUpgrade(branch, database){
 
   // create the connection tmp_42864
 
-  const query2      = `SELECT CONCAT('DROP TABLE', TABLE_SCHEMA, '.', TABLE_NAME, ';') from INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME LIKE 'tmp_42864%' AND TABLE_SCHEMA = ?;`
+  // const query2      = `SELECT CONCAT('DROP TABLE', TABLE_SCHEMA, '.', TABLE_NAME, ';') from INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME LIKE 'tmp_42864%' AND TABLE_SCHEMA = ?;`
   
 
-  await connection.execute(query2, [database]);
+  // await connection.execute(query2, [database]);
 
 
 
-  const query      = `SELECT CONCAT('DROP TABLE', TABLE_SCHEMA, '.', TABLE_NAME, ';') from INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME LIKE 'entity_subqueu%' AND TABLE_SCHEMA = ?;`
+  // const query      = `SELECT CONCAT('DROP TABLE', TABLE_SCHEMA, '.', TABLE_NAME, ';') from INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME LIKE 'entity_subqueu%' AND TABLE_SCHEMA = ?;`
 
-  await connection.execute(query, [database]);
+  // await connection.execute(query, [database]);
 
 
 

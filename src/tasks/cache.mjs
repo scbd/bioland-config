@@ -27,6 +27,7 @@ function cache(branch, site) {
 
   execSync(`cd ${webCtx}`)
 
+  console.log('')
   consola.info(`${branch.toUpperCase()} Site: ${site} -> rebuilding cache`)
 
   try{

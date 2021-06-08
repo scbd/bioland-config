@@ -33,6 +33,7 @@ async function loadDemoData(branch, site){
 
     execSync(`cd ${webCtx}`)
 
+    console.log('')
     consola.info(`${branch.toUpperCase()} Site: ${site} -> loading demo data`)
 
     execSync(`ddev drush @${site} sql:cli < /home/ubuntu/efs/tmp/demo.sql`)

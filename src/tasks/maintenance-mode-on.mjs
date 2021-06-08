@@ -34,6 +34,7 @@ async function mmo(branch, site){
 
     execSync(`cd ${webCtx}`)
 
+    console.log('')
     consola.info(`${branch.toUpperCase()} Site: ${site} -> maintenance mode on`)
     
     execSync(`ddev drush @${site} sset system.maintenance_mode 1`)
