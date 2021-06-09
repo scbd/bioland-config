@@ -47,9 +47,14 @@ export const getBranch = (alt=false)=>{
 }
 
 export const getArgs = () => {
-  const index = getBranchFromProps()? 5 : 4
 
-  return process.argv.slice(index)
+
+  for (const [index, value]  of process.argv.entries())
+    if(isValidCommand(value))
+      return process.argv.slice(index+1)
+  
+
+  return []
 }
 
 function isValidCommand(theCommand){
