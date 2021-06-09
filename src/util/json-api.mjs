@@ -5,17 +5,17 @@ import consola from 'consola'
 const $http  = SA.agent()
 const global = { enabled: false }
 
-export async function login (branch, site){
+export async function login (branch, site, host){
   try{
     if(!global.enabled || global.enabled !== site) enableJsonApi(site)
 
     if(global.$http) return global.$http
 
-    const host = getHost(branch, site)
+    const theHost = host? host : getHost(branch, site)
 
     const { SUPPORT_PASS:pass } = process.env
     const   name                = 'support@chm-cbd.net'
-    const   uri                 = `${host}/user/login?_format=json`
+    const   uri                 = `${theHost}/user/login?_format=json`
 
     try{
       const { body } = await $http.post(uri)
