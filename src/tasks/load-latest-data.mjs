@@ -45,7 +45,7 @@ async function loadLatestData(branch, site){
 
     execSync(`ddev drush @${site} sql:cli < temp/${site}-latest.sql`)
 
-    execSync(`rm -rf ${sitesCtx}/${site}/files`)
+    // execSync(`rm -rf ${sitesCtx}/${site}/files`)
     execSync(`tar -C ${sitesCtx}/${site} -zxf temp/${site}-latest-site.tgz`)
 
     execSync(`ddev drush @${site} cr`)

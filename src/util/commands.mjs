@@ -21,9 +21,6 @@ export function getCommand({ paramCase } = { paramCase:false }){
   const theCommandOne       = process.argv[startIndex]  ? changeCase.camelCase(process.argv[ startIndex ])   : ''
   const theCommandTwo       = process.argv[startIndex+1]? changeCase.camelCase(process.argv[ startIndex+1 ]) : ''
 
-  consola.warn('theCommandOne', theCommandOne)
-  consola.warn('theCommandTwo', theCommandTwo)
-
   if(isValidCommand(theCommandOne)) return paramCase? changeCase.paramCase(theCommandOne) : theCommandOne
   if(isValidCommand(theCommandTwo)) return paramCase? changeCase.paramCase(theCommandTwo) : theCommandTwo
   
@@ -35,10 +32,8 @@ export const getBranch = (alt=false)=>{
   const cwdBranch   = getBranchFromPath()
   const propsBranch = getBranchFromProps(alt)
 
-  consola.warn('cwdBranch', cwdBranch)
-  consola.warn(' propsBranch',  getBranchFromProps(true))
 
-  if(cwdBranch && !propsBranch) return cwdBranch
+  if(cwdBranch && (!propsBranch || !isValidCommand(propsBranch))) return cwdBranch
   if(!cwdBranch && propsBranch) return propsBranch
 
   if(cwdBranch && propsBranch && (cwdBranch !== propsBranch)) throw new Error(`Path branch and argument branch do not match: ${cwdBranch} != ${propsBranch}`)
