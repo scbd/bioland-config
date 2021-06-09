@@ -40,8 +40,6 @@ export const getBranch = (alt=false)=>{
 
   if(cwdBranch ) return cwdBranch
 
-  consola.warn('getBranch:propsBranch',  getBranchFromProps(true))
-
   if(propsBranch) return propsBranch
 
 
