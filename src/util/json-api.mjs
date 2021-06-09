@@ -7,9 +7,9 @@ const global = { enabled: false }
 
 export async function login (branch, site, host){
   try{
-    if(!global.enabled || global.enabled !== site) enableJsonApi(site)
+    if(!host || !global.enabled || global.enabled !== site) enableJsonApi(site)
 
-    if(global.$http) return global.$http
+    if(!host || global.$http) return global.$http
 
     const theHost = host? host : getHost(branch, site)
 
