@@ -99,5 +99,6 @@ function backUpPathAlias(branch, site, { preDrupalUpgrade } = { preDrupalUpgrade
 
   execSync(`rm ${webCtx}/dumps/${site}/${site}-${dateTime}-path-alias${preDUpgradeFlag}.sql.gz`)
   execSync(`rm ${webCtx}/dumps/${site}/${site}-${dateTime}-taxon${preDUpgradeFlag}.sql.gz`)
+  execSync(`rm ${webCtx}/dumps/${site}/${site}-${dateTime}-subqueue${preDUpgradeFlag}.sql.gz`)
 }
 
