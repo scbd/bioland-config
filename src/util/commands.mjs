@@ -21,11 +21,6 @@ export function getCommand({ paramCase } = { paramCase:false }){
   const theCommandOne       = process.argv[startIndex]  ? changeCase.camelCase(process.argv[ startIndex ])   : ''
   const theCommandTwo       = process.argv[startIndex+1]? changeCase.camelCase(process.argv[ startIndex+1 ]) : ''
 
-  consola.warn('getCommand:theCommandOne', theCommandOne)
-  consola.warn('getCommand:isValidCommand(theCommandOne)', isValidCommand(theCommandOne))
-  consola.warn('getCommand:theCommandTwo', theCommandTwo)
-  consola.warn('getCommand:isValidCommand(theCommandTwo)', isValidCommand(theCommandTwo))
-
   if(isValidCommand(theCommandOne)) return paramCase? changeCase.paramCase(theCommandOne) : theCommandOne
   if(isValidCommand(theCommandTwo)) return paramCase? changeCase.paramCase(theCommandTwo) : theCommandTwo
   
