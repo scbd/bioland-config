@@ -11,7 +11,7 @@ export default async(branch, args) => {
 
   if(args.length)
     await (runTask(branch))(loadDemoData, `${branch.toUpperCase()}: Load Demo Data on Site: ${args[0]}`, args)
-  else if(branch !== 'demo') throw new Error(`Cannot load demo data on branch ${branch.toUpperCase()}`)
+  else if(branch !== 'demo') throw new Error(`Cannot load demo data for all sites on branch ${branch.toUpperCase()}`)
   else await (runTask(branch))(loadDemoDataAll, `${branch.toUpperCase()}: Load Demo Data on ALL sites`)
 
   notifyDone()()

@@ -77,8 +77,10 @@ function getBranchFromProps(alt = false){
   // const index     = alt? 2 : 3
   // const theBranch = process.argv[index]
 
+  const branchPath = getBranchFromPath()
+
   for (const arg of process.argv) {
-    if(isValidBranch(arg))
+    if(isValidBranch(arg) && branchPath !=='demo')
       return arg
   }
   // if(isValidBranch(theBranch)) return theBranch
