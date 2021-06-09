@@ -40,7 +40,7 @@ export const getBranch = (alt=false)=>{
   consola.warn('getBranch:cwdBranch', cwdBranch)
   consola.warn('getBranch:propsBranch',  getBranchFromProps(true))
 
-  if(cwdBranch && (!propsBranch || isValidCommand(propsBranch))) return cwdBranch
+  if(cwdBranch && (!propsBranch || !isValidCommand(propsBranch))) return cwdBranch
   if(!cwdBranch && propsBranch) return propsBranch
 
   if(cwdBranch && propsBranch && (cwdBranch !== propsBranch)) throw new Error(`Path branch and argument branch do not match: ${cwdBranch} != ${propsBranch}`)
@@ -57,8 +57,6 @@ export const getArgs = () => {
 }
 
 function isValidCommand(theCommand){
-  consola.error('isValidCommand:commands', commands)
-  consola.error('isValidCommand:heCommand',theCommand)
   if (commands.includes(theCommand)) return true
 
   return false
