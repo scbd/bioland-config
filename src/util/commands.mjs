@@ -37,15 +37,13 @@ export const getBranch = (alt=false)=>{
   const cwdBranch   = getBranchFromPath()
   const propsBranch = getBranchFromProps(alt)
 
-  consola.warn('getBranch:cwdBranch', cwdBranch)
+
+  if(cwdBranch ) return cwdBranch
+
   consola.warn('getBranch:propsBranch',  getBranchFromProps(true))
 
-  if(cwdBranch && (!propsBranch || !isValidCommand(propsBranch))) return cwdBranch
-  if(!cwdBranch && propsBranch) return propsBranch
+  if(propsBranch) return propsBranch
 
-  if(cwdBranch && propsBranch && (cwdBranch !== propsBranch)) throw new Error(`Path branch and argument branch do not match: ${cwdBranch} != ${propsBranch}`)
-
-  if(cwdBranch && propsBranch) return propsBranch
 
   throw new Error(`No branch passed or in path`)
 }
