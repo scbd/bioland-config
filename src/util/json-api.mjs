@@ -17,17 +17,21 @@ export async function login (branch, site){
     const   name                = 'support@chm-cbd.net'
     const   uri                 = `${host}/user/login?_format=json`
 
-    const { body } = await $http.post(uri)
-                            .set('Content-Type', 'application/json')
-                            .send(JSON.stringify({ name, pass }))
+    try{
+      const { body } = await $http.post(uri)
+                              .set('Content-Type', 'application/json')
+                              .send(JSON.stringify({ name, pass }))
 
-    const { csrf_token } = body
+      const { csrf_token } = body
 
-    $http.set('X-CSRF-Token', csrf_token)
+      $http.set('X-CSRF-Token', csrf_token)
 
-    global.$http = $http
+      global.$http = $http
 
-    return $http
+      return $http
+    }catch(e){
+      consola.error(e.response)
+    }
   }
   catch(e){
     consola.error('DrupalAuth.login: ', e)
