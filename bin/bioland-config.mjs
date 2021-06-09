@@ -23,14 +23,13 @@ function runCommand(){
 
 function runChildProcess(theCommand){
   const isCustom         = theCommand === 'custom'
-  const scriptPathToFork = isCustom ? '${src}/child-processes/custom.mjs' : `${src}/child-processes/index.mjs` 
+  const scriptPathToFork = isCustom ? `${src}/child-processes/custom.mjs` : `${src}/child-processes/index.mjs` 
   
   return forkScript(scriptPathToFork)
 }
 
 function forkScript(scriptPathToFork){
 
-  consola.warn('process.argv', process.argv)
   const { DEBUG } = process.env
   const   env     = { ...process.env, BL_CONFIG_CONTEXT: context }
   const   argv    =  process.argv.slice(2)

@@ -1,7 +1,7 @@
 import changeCase from 'change-case'
 import consola from 'consola'
 
-const   generalCommands   = [ 'backUp', 'cache',  'initBranch', 'updateDb', 'maintenanceModeOn', 'maintenanceModeOff' ] //'createBranch',
+const   generalCommands   = [ 'backUp', 'cache',  'initBranch', 'updateDb', 'maintenanceModeOn', 'maintenanceModeOff', 'custom' ] //'createBranch',
 const   biolandCommands   = [ 'initSite', 'gbif', 'blUsers', 'blUsersPasswords', 'loadDemoData', 'loadLatestData' ]
 const   commands          = [ ...generalCommands, ...biolandCommands ]
 const   branches          = [ 'prod', 'test', 'demo' ]

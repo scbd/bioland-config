@@ -4,19 +4,18 @@ import { execSync  } from 'child_process'
 import { webCtx, sitesCtx     }            from '../util/context.mjs'
 import   config                  from '../util/config.mjs'
 
-import { setBioTheme } from './not-user-commands/bl-init/index.mjs'
-import { blUserFp } from './not-user-commands/bl-users.mjs'
 
 import consola from 'consola'
 
 export default async(branch, args) => {
 
   if(args.length)
-    await (runTask(branch))(mmoAll, `${branch.toUpperCase()}: Initiating maintenance mode on Site: ${args[0]}`, args)
+    await (runTask(branch))(mmo, `${branch.toUpperCase()}: Initiating maintenance mode on Site: ${args[0]}`, args)
   else
     await (runTask(branch))(mmoAll, `${branch.toUpperCase()}: Initiating maintenance mode on ALL sites`)
 
   notifyDone()()
+  process.exit(0)
 }
 
 
@@ -41,7 +40,6 @@ async function mmo(branch, site){
 
     execSync(`ddev drush @${site} cr`)
 
-    process.exit(0)
     return
   }
   catch(e){

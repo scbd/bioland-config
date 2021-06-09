@@ -1,4 +1,5 @@
-export default  [
+export const focalPoints = [
+
   {
       id:  "6789",
       email: "Klodiana.Marika@turizmi.gov.al",
@@ -2673,3 +2674,5 @@ export default  [
       organizationUrl: "http://www.mena.gov.ps/"
   }
 ]
+
+export default focalPoints
