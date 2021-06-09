@@ -29,6 +29,8 @@ function runChildProcess(theCommand){
 }
 
 function forkScript(scriptPathToFork){
+
+  consola.warn('process.argv', process.argv)
   const { DEBUG } = process.env
   const   env     = { ...process.env, BL_CONFIG_CONTEXT: context }
   const   argv    =  process.argv.slice(2)
