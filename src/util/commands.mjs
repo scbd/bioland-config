@@ -57,6 +57,8 @@ export const getArgs = () => {
 }
 
 function isValidCommand(theCommand){
+  consola.error('isValidCommand:commands', commands)
+  consola.error('isValidCommand:heCommand',theCommand)
   if (commands.includes(theCommand)) return true
 
   return false
