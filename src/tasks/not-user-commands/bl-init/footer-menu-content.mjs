@@ -1,5 +1,4 @@
-import { patchMenuUri, deleteMenu  , disableJsonApi } from '../content-changes/json-api.mjs'
-import { getCountries, getIsoAlpha3                 } from '../../../util/countries.mjs'
+import { getCountries, getIsoAlpha3, patchMenuUri, deleteMenu  , disableJsonApi } from '../../../util/index.mjs'
 
 export default async function (branch, site){
   await updateCbdProfile   (branch, site)
