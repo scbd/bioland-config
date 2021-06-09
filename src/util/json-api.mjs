@@ -63,10 +63,10 @@ export async function deleteMenu(branch, site, id){
 export function enableJsonApi(site){
   global.$http = undefined
 
-  spawnSync('ddev', [ 'drush', '-y', `@${site}`, 'en', 'jsonapi' ])
+  //spawnSync('ddev', [ 'drush', '-y', `@${site}`, 'en', 'jsonapi' ])
 
-  spawnSync('ddev', [ 'drush', '-y', `@${site}`, 'cset', 'jsonapi.settings', 'read_only', `--format=boolean`, `--value=0` ])
-  consola.error('jsonapi.settings')
+  // spawnSync('ddev', [ 'drush', '-y', `@${site}`, 'cset', 'jsonapi.settings', 'read_only', `--format=boolean`, `--value=0` ])
+
   execSync(`ddev drush @${site} cr`)
 
   global.enabled = site
@@ -74,7 +74,7 @@ export function enableJsonApi(site){
 
 export function disableJsonApi(site){
 
-  spawnSync('ddev', [ 'drush', '-y', `@${site}`, 'cset', 'jsonapi.settings', 'read_only', `--format=boolean`, `--value=1` ])
+  // spawnSync('ddev', [ 'drush', '-y', `@${site}`, 'cset', 'jsonapi.settings', 'read_only', `--format=boolean`, `--value=1` ])
   spawnSync('ddev', [ 'drush', '-y', `@${site}`, 'pm:uninstall', 'jsonapi' ])
 
   execSync(`ddev drush @${site} cr`)
