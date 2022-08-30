@@ -43,7 +43,7 @@ const sites =  {
   ph  : { locale,       locales: [ 'es', 'en', 'fr', 'fil'], environment },
   ps  : { locale: 'ar', locales: [ 'en', 'ar'], environment },
   rw  : { locale: 'fr', locales: [ 'en', 'fr' ] },
-  rs  : { locale: 'sr', locales: [ 'en', 'sr' ]},//, redirectTo: 'biodiverzitet-chm.rs'
+  rs  : { locale: 'sr', locales: [ 'en', 'sr' ], environment},//, redirectTo: 'biodiverzitet-chm.rs'
   sa  : { locale: 'ar', locales: [ 'en', 'ar'], environment },
   sd  : { locale: 'ar', locales: [ 'en', 'ar'] },
   sg  : { locale,       locales: [ 'en', 'fr', 'zh', 'ms', 'ta'], environment },
