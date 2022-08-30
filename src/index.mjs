@@ -43,7 +43,7 @@ const sites =  {
   ph  : { locale,       locales: [ 'es', 'en', 'fr', 'fil'], environment },
   ps  : { locale: 'ar', locales: [ 'en', 'ar'], environment },
   rw  : { locale: 'fr', locales: [ 'en', 'fr' ] },
-  rs  : { locale: 'sr', locales: [ 'en', 'sr' ] },
+  rs  : { locale: 'sr', locales: [ 'en', 'sr' ]},//, redirectTo: 'biodiverzitet-chm.rs'
   sa  : { locale: 'ar', locales: [ 'en', 'ar'], environment },
   sd  : { locale: 'ar', locales: [ 'en', 'ar'] },
   sg  : { locale,       locales: [ 'en', 'fr', 'zh', 'ms', 'ta'], environment },
@@ -93,5 +93,5 @@ function getHost(siteCode, {redirectTo, environment}){
 
 function addHostToSites(sites){
   for (let sideCode of Object.keys(sites))
-    sites[sideCode].host = getHost(siteCode, sites[sideCode])
+    sites[sideCode].host = getHost(sideCode, sites[sideCode])
 }
