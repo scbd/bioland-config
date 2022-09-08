@@ -62,7 +62,7 @@ const sites =  {
   'han-demo'  : { locale, locales },
   demo        : { locale, locales },
   training    : { locale, locales },
-  seed        : { locale, locales, environment },
+  seed        : { locale, locales },
   rjh         : { locale, locales, environment },
   rqk         : { locale, locales, environment },
   dart        : { locale, locales, environment }
