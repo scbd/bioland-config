@@ -65,6 +65,7 @@ const sites =  {
   seed        : { locale, locales },
   rjh         : { locale, locales, environment },
   rqk         : { locale, locales, environment },
+  ray         : { locale, locales, environment },
   dart        : { locale, locales, environment }
 }
 
