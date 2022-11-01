@@ -37,7 +37,11 @@ const sites =  {
   rjh         : { locale, locales, environment },
   rqk         : { locale, locales, environment },
   ray         : { locale, locales, environment },
-  dart        : { locale, locales, environment }
+  dart        : { locale, locales, environment },
+  gin         : { locale, locales },
+  claro       : { locale, locales },
+  mediteran   : { locale, locales },
+  material    : { locale, locales },
 }
 
 const c = (() =>{
