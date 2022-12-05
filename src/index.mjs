@@ -3,7 +3,7 @@ const locales     = [ 'ar', 'en', 'es', 'fr', 'ru', 'zh' ]
 const environment =   'test'
 
 const sites =  {
-  acb : { locale,       locales: [ 'en', 'zh', 'ms', 'my', 'km', 'lo', 'fil', 'th', 'vi' ], urls: ['www.asean.chm-cbd.net'], redirectTo: 'asean.chm-cbd.net', logo: 'ACB_ASEAN_Logo.png'  },
+  acb : { locale,       locales: [ 'en', 'zh', 'ms', 'my', 'km', 'lo', 'fil', 'th', 'vi' ],  redirectTo: 'asean.chm-cbd.net', logo: 'ACB_ASEAN_Logo.png'  },
   be  : { locale,       locales: [ 'en', 'fr', 'nl', 'de'], urls: ['biodiv.be'], redirectTo: 'www.biodiv.be' },
   bf  : { locale: 'fr', locales: [ 'en', 'fr' ],             environment },
   bi  : { locale,       locales: [ 'en', 'fr' ] }, 
@@ -69,7 +69,8 @@ const sites =  {
   rjh         : { locale, locales, environment },
   rqk         : { locale, locales, environment },
   ray         : { locale, locales, environment },
-  dart        : { locale, locales, environment }
+  dart        : { locale, locales, environment },
+  gkssb       : { locale, locales }
 }
 
 const c = (() =>{
