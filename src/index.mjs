@@ -9,6 +9,7 @@ const sites =  {
   bi  : { locale,       locales: [ 'en', 'fr' ] }, 
   bj  : { locale: 'fr', locales: [ 'en', 'fr' ] },
   bt  : { locale,       locales: [ 'dz' ] },
+  bw  : { locale: 'en', locales: [ 'en', 'tn' ], environment },
   cd  : { locale: 'fr', locales: [ 'en', 'fr' ],             environment },
   cf  : { locale: 'fr', locales: [ 'en', 'fr' ] },
   cg  : { locale: 'fr', locales: [ 'en', 'fr' ] },  
