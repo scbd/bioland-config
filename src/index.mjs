@@ -15,7 +15,7 @@ const sites =  {
   cg  : { locale: 'fr', locales: [ 'en', 'fr' ] },  
   ch  : { locale: 'en', locales: [ 'en', 'fr', 'de', 'it' ], environment},
   ci  : { locale: 'fr', locales: [ 'en', 'fr' ]  },
-  cm  : { locale: 'fr', locales: [ 'en', 'fr' ] },
+  cm  : { locale: 'fr', locales: [ 'en', 'fr' ], redirectTo: 'cm.chm-cbd.net', urls: ['cameroon.chm-cbd.net', 'cameroun.chm-cbd.net'] },
   eg  : { locale: 'ar', locales: [ 'ar', 'en' ],             environment },
   et  : { locale,       locales: [ 'am', 'en' ] },
   fr  : { locale: 'fr', locales: [ 'en', 'fr' ], redirectTo: 'biodiv.mnhn.fr' },
