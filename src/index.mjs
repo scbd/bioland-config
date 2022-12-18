@@ -40,7 +40,7 @@ const sites =  {
   mu  : { locale,       locales: [ 'en', 'fr' ] },
   my  : { locale,       locales: [ 'en', 'fr', 'zh', 'ms'], environment },
   ni  : { locale: 'es', locales: [ 'en', 'es'], environment },
-  ne  : { locale,       locales: [ 'en', 'fr'], environment },
+  ne  : { locale,       locales: [ 'en', 'fr']},
   nl  : { locale: 'nl', locales: [ 'en', 'nl'] },
   om  : { locale: 'ar', locales: [ 'en', 'ar'], environment },
   ph  : { locale,       locales: [ 'es', 'en', 'fr', 'fil'], environment },
