@@ -44,6 +44,7 @@ const sites =  {
   nl  : { locale: 'nl', locales: [ 'en', 'nl'] },
   om  : { locale: 'ar', locales: [ 'en', 'ar'], environment },
   ph  : { locale,       locales: [ 'es', 'en', 'fr', 'fil'], environment },
+  pk  : { locale,       locales: [ 'en', 'ur'], environment },
   ps  : { locale: 'ar', locales: [ 'en', 'ar'], environment },
   rw  : { locale: 'fr', locales: [ 'en', 'fr' ] },
   rs  : { locale: 'sr', locales: [ 'en', 'sr' ], environment},//, redirectTo: 'biodiverzitet-chm.rs'
