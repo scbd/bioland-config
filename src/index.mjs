@@ -32,7 +32,7 @@ const sites =  {
   km  : { locale,       locales: [ 'en', 'fr' ] },
   kw  : { locale: 'ar', locales: [ 'ar', 'en'], environment},
   lb  : { locale: 'ar', locales: [ 'ar', 'en'], environment },
-  lk  : { locale,       locales, environment },
+  lk  : { locale,       locales },
   ma  : { locale,       locales: [ 'ar', 'en', 'fr', 'es'], environment },
   mg  : { locale,       locales: [ 'en', 'fr' ], environment },
   ml  : { locale,       locales: [ 'en', 'fr' ] },
