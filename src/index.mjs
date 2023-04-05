@@ -73,6 +73,7 @@ const sites =  {
   rqk         : { locale, locales, environment },
   ray         : { locale, locales, environment },
   dart        : { locale, locales, environment },
+  mxm         : { locale, locales, environment },
   gkssb       : { locale, locales }
 }
 
