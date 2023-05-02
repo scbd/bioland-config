@@ -4,6 +4,7 @@ const environment =   'test'
 
 const sites =  {
   acb : { locale,       locales: [ 'en', 'zh', 'ms', 'my', 'km', 'lo', 'fil', 'th', 'vi' ],  redirectTo: 'asean.chm-cbd.net', logo: 'ACB_ASEAN_Logo.png'  },
+  ao  : { locale: 'pt', locales: [ 'pt', 'ar', 'en', 'es', 'fr', 'ru', 'zh' ],  environment }, 
   be  : { locale,       locales: [ 'en', 'fr', 'nl', 'de'], urls: ['biodiv.be'], redirectTo: 'www.biodiv.be' },
   bf  : { locale: 'fr', locales: [ 'en', 'fr' ],             environment },
   bi  : { locale,       locales: [ 'en', 'fr' ] }, 
@@ -34,6 +35,7 @@ const sites =  {
   la  : { locale,       locales, environment },
   lb  : { locale: 'ar', locales: [ 'ar', 'en'], environment },
   lk  : { locale,       locales },
+  ls  : { locale,       locales, environment },
   ma  : { locale,       locales: [ 'ar', 'en', 'fr', 'es'], environment },
   mg  : { locale,       locales: [ 'en', 'fr' ], environment },
   ml  : { locale,       locales: [ 'en', 'fr' ] },
@@ -52,6 +54,7 @@ const sites =  {
   sa  : { locale: 'ar', locales: [ 'en', 'ar'], environment },
   sd  : { locale: 'ar', locales: [ 'en', 'ar'] },
   sg  : { locale,       locales: [ 'en', 'fr', 'zh', 'ms', 'ta'], environment },
+  sl  : { locale,       locales, environment },
   sy  : { locale: 'ar', locales: [ 'en', 'ar'], environment },
   td  : { locale: 'fr', locales: [ 'en', 'fr', 'ar'], environment },
   tg  : { locale,       locales: [ 'en', 'fr' ], environment },
