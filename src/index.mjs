@@ -22,6 +22,7 @@ const sites =  {
   fr  : { locale: 'fr', locales: [ 'en', 'fr' ], redirectTo: 'biodiv.mnhn.fr' },
   ga  : { locale,       locales: [ 'en', 'fr' ] },
   gh  : { locale,       locales: [ 'en', 'fr'],         environment },
+  gm  : { locale: 'en', locales: [ 'en' ],             environment },
   gn  : { locale: 'fr', locales: [ 'en', 'fr' ],        environment  },
   gw  : { locale: 'pt', locales: [ 'en', 'fr', 'pt' ],  environment }, 
   gy  : { locale,       locales: [ 'en'],               environment },
