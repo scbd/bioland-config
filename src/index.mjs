@@ -4,7 +4,8 @@ const environment =   'test'
 
 const sites =  {
   acb : { locale,       locales: [ 'en', 'zh', 'ms', 'my', 'km', 'lo', 'fil', 'th', 'vi' ],  redirectTo: 'asean.chm-cbd.net', logo: 'ACB_ASEAN_Logo.png'  },
-  ao  : { locale: 'pt', locales: [ 'pt', 'ar', 'en', 'es', 'fr', 'ru', 'zh' ],  environment }, 
+  ao  : { locale: 'pt', locales: [ 'pt', 'ar', 'en', 'es', 'fr', 'ru', 'zh' ],  environment },
+  az  : { locale: 'az',       locales, environment },
   be  : { locale,       locales: [ 'en', 'fr', 'nl', 'de'], urls: ['biodiv.be'], redirectTo: 'www.biodiv.be' },
   bf  : { locale: 'fr', locales: [ 'en', 'fr' ],             environment },
   bi  : { locale,       locales: [ 'en', 'fr' ] }, 
