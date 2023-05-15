@@ -64,6 +64,7 @@ const sites =  {
   td  : { locale: 'fr', locales: [ 'en', 'fr', 'ar'], environment },
   tg  : { locale,       locales: [ 'en', 'fr' ], environment },
   th  : { locale,       locales: [ 'en', 'fr', 'zh', 'th'], environment },
+  tv  : { locale,       locales: [ 'en'], environment },
   tz  : { locale,       locales: [ 'en', 'sw'] },
   ug  : { locale,       locales: [ 'en' ], environment },
   vc  : { locale,       locales: [ 'en' ], environment },
