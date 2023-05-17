@@ -67,6 +67,7 @@ const sites =  {
   tv  : { locale,       locales: [ 'en'], environment },
   tz  : { locale,       locales: [ 'en', 'sw'] },
   ug  : { locale,       locales: [ 'en' ], environment },
+  uz  : { locale,       locales, environment },
   vc  : { locale,       locales: [ 'en' ], environment },
   vn  : { locale: 'vi', locales: [ 'en', 'vi' ], environment },
   www : { locale,       locales },
