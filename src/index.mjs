@@ -49,6 +49,7 @@ const sites =  {
   ne  : { locale,       locales: [ 'en', 'fr']},
   nl  : { locale: 'nl', locales: [ 'en', 'nl'] },
   om  : { locale: 'ar', locales: [ 'en', 'ar'], environment },
+  pe  : { locale,       locales, environment },
   ph  : { locale,       locales: [ 'es', 'en', 'fr', 'fil'], environment },
   pk  : { locale,       locales: [ 'en', 'ur'], environment },
   ps  : { locale: 'ar', locales: [ 'en', 'ar'], environment },
