@@ -108,7 +108,8 @@ const sites =  {
   rqk         : { locale, locales, environment },
   ray         : { locale, locales, environment },
   dart        : { locale, locales, environment },
-  gkssb       : { locale, locales }
+  gkssb       : { locale, locales },
+  oek         : { locale, locales, environment },
 }
 
 const c = (() =>{
