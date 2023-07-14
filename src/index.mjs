@@ -69,6 +69,7 @@ const sites =  {
   nr  : { locale,       locales, environment },
   nu  : { locale,       locales, environment }, 
   om  : { locale: 'ar', locales: [ 'en', 'ar'], environment },
+  pa  : { locale,       locales, environment },
   pe  : { locale,       locales, environment },
   pg  : { locale,       locales, environment },
   ph  : { locale,       locales: [ 'es', 'en', 'fr', 'fil'], environment },
