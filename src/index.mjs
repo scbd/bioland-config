@@ -7,7 +7,7 @@ const sites =  {
   af  : { locale, locales, environment },
   ag  : { locale, locales: [ 'en' ], environment },
   ao  : { locale: 'pt', locales: [ 'pt', 'ar', 'en', 'es', 'fr', 'ru', 'zh' ],  environment },
-  ar  : { locale: 'es', locales: [ 'en', 'es' ], environment },
+  ar  : { locale: 'en', locales: [ 'en', 'es' ], environment },
   az  : { locale: 'az',       locales, environment },
   bd  : { locale, locales:['bn',...locales], environment },
   be  : { locale,       locales: [ 'en', 'fr', 'nl', 'de'], urls: ['biodiv.be'], redirectTo: 'www.biodiv.be' },
