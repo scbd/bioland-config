@@ -130,8 +130,8 @@ const sites =  {
   zm  : { locale,       locales: [ 'en' ] },
   zw  : { locale,       locales: [ 'en' ] },
 
-  'asean-demo': { locale, locales },
-  'geo-bon'   : { locale, locales },
+  'asean-demo': { locale, locales,  environment},
+  'geo-bon'   : { locale, locales, environment },
   'han-demo'  : { locale, locales },
   demo        : { locale, locales },
   training    : { locale, locales },
