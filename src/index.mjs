@@ -71,6 +71,7 @@ const sites =  {
   mk  : { locale, locales, environment },
   ml  : { locale,       locales: [ 'en', 'fr' ] },
   mn  : { locale, locales: ['mn', ...locales], environment },
+  mm  : { locale, locales: ['my', ...locales], environment },
   mr  : { locale,       locales: [ 'ar','en', 'fr' ] },
   mu  : { locale,       locales: [ 'en', 'fr' ] },
   my  : { locale,       locales: [ 'en', 'fr', 'zh', 'ms'], environment },
@@ -129,6 +130,8 @@ const sites =  {
   zm  : { locale,       locales: [ 'en' ] },
   zw  : { locale,       locales: [ 'en' ] },
 
+  'asean-demo': { locale, locales },
+  'geo-bon'   : { locale, locales },
   'han-demo'  : { locale, locales },
   demo        : { locale, locales },
   training    : { locale, locales },
