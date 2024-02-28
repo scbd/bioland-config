@@ -56,7 +56,7 @@ const sites =  {
   ht  : { locale: 'fr', locales: [ 'en', 'fr'],  environment },  
   iq  : { locale: 'ar', locales: [ 'ar', 'en' ] },
   jo  : { locale,       locales: [ 'ar', 'en' ], environment },
-  ke  : { locale,       locales: [ 'en' ], environment },
+  ke  : { locale,       locales: [ 'en' ]},
   kg  : { locale, locales:['ky',...locales], environment },
   ki  : { locale, locales, environment },
   km  : { locale,       locales: [ 'en', 'fr' ] },
