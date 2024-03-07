@@ -70,7 +70,7 @@ const sites =  {
   lk  : { locale,       locales },
   ls  : { locale,       locales, environment },
   lt  : { locale, locales, environment },
-  ma  : { locale,       locales: [ 'ar', 'en', 'fr', 'es'], environment },
+  ma  : { locale,       locales: [ 'ar', 'en', 'fr'] },
   mc  : { locale, locales, environment },
   me  : { locale, locales, environment },
   mg  : { locale,       locales: [ 'en', 'fr' ], environment },
