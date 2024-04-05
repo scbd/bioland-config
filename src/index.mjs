@@ -45,7 +45,7 @@ const sites =  {
   ge  : { locale, locales, environment },
   gh  : { locale,       locales: [ 'en', 'fr'],         environment },
   gm  : { locale: 'en', locales: [ 'en' ],             environment },
-  gn  : { locale: 'fr', locales: [ 'en', 'fr' ],        environment  },
+  gn  : { locale: 'fr', locales: [ 'en', 'fr' ]},
   gq  : { locale, locales, environment },
   gw  : { locale: 'pt', locales: [ 'en', 'fr', 'pt' ],  environment }, 
   gy  : { locale,       locales: [ 'en'],               environment },
