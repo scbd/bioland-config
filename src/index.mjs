@@ -147,8 +147,7 @@ const sites =  {
   rqk         : { locale, locales, environment },
   ray         : { locale, locales, environment },
   gkssb       : { locale, locales },
-  oek         : { locale, locales, environment },
-  'test.ma'   : { locale, locales },
+  oek         : { locale, locales, environment }
 }
 
 const c = (() =>{
