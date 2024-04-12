@@ -147,7 +147,8 @@ const sites =  {
   rqk         : { locale, locales, environment },
   ray         : { locale, locales, environment },
   gkssb       : { locale, locales },
-  oek         : { locale, locales, environment }
+  oek         : { locale, locales, environment },
+  'test-ma'   : { locale, locales, redirectTo: 'test.ma.chm-cbd.net',},
 }
 
 const c = (() =>{
