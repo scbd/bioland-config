@@ -148,6 +148,7 @@ const sites =  {
   ray         : { locale, locales, environment },
   gkssb       : { locale, locales },
   oek         : { locale, locales, environment },
+  'test.ma'   : { locale, locales },
 }
 
 const c = (() =>{
