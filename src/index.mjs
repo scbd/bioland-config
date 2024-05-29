@@ -83,6 +83,7 @@ const sites =  {
   my  : { locale,       locales: [ 'en', 'fr', 'zh', 'ms'], environment },
   mw  : { locale,       locales: [ 'en'] },
   mz : { locale, locales, environment },
+  na  : { locale,       locales: [ 'en' ], environment },
   ni  : { locale: 'es', locales: [ 'en', 'es'], environment },
   ne  : { locale,       locales: [ 'en', 'fr']},
   nl  : { locale: 'nl', locales: [ 'en', 'nl'] },
