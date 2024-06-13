@@ -96,7 +96,7 @@ const sites =  {
   pg  : { locale,       locales, environment },
   ph  : { locale,       locales: [ 'es', 'en', 'fr', 'fil'], environment },
   pk  : { locale,       locales: [ 'en', 'ur'], environment },
-  ps  : { locale: 'ar', locales: [ 'en', 'ar'], environment },
+  ps  : { locale: 'ar', locales: [ 'en', 'ar'] },
   pt  : { locale, locales, environment },
   py  : { locale,       locales, environment },
   qa  : { locale,       locales, environment },
