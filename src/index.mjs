@@ -41,7 +41,7 @@ const sites =  {
   fm  : { locale, locales, environment },
   fr  : { locale: 'fr', locales: [ 'en', 'fr' ], redirectTo: 'biodiv.mnhn.fr' },
   ga  : { locale,       locales: [ 'en', 'fr' ] },
-  gb  : { locale, locales, environment },
+  gb  : { locale, locales: ['en'], redirectTo: 'uk.chm-cbd.net', urls: ['gb.chm-cbd.net'], logo:'/sites/gb/files/2024-12/union-jack-green-h124px.gif' },
   ge  : { locale, locales, environment },
   gh  : { locale,       locales: [ 'en', 'fr'],         environment },
   gm  : { locale: 'en', locales: [ 'en' ],             environment },
