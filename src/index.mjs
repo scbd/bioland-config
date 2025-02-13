@@ -29,7 +29,7 @@ const sites =  {
   cm  : { locale: 'fr', locales: [ 'en', 'fr' ], redirectTo: 'cm.chm-cbd.net', urls: ['cameroon.chm-cbd.net', 'cameroun.chm-cbd.net'] },
   'cm-demo'  : { locale: 'fr', locales: [ 'en', 'fr' ] },
   'cm-training'  : { locale: 'fr', locales: [ 'en', 'fr' ] },
-  co  : { locale, locales, environment },
+  co  : { locale, locales  },
   cz  : { locale, locales, environment },
   dm  : { locale, locales, environment },
   dz : { locale, locales, environment },
