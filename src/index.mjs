@@ -12,7 +12,7 @@ const sites =  {
   az  : { locale: 'az',       locales, environment },
   bd  : { locale, locales:['bn',...locales], environment },
   be  : { locale,       locales: [ 'en', 'fr', 'nl', 'de'], urls: ['biodiv.be'], redirectTo: 'www.biodiv.be' },
-  bf  : { locale: 'fr', locales: [ 'en', 'fr' ],             environment },
+  bf  : { locale: 'fr', locales: [ 'en', 'fr' ] },
   bi  : { locale,       locales: [ 'en', 'fr' ] }, 
   bj  : { locale: 'fr', locales: [ 'en', 'fr' ] },
   bo  : { locale, locales, environment },
