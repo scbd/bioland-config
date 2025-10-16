@@ -75,7 +75,7 @@ const sites =  {
   ma  : { locale,       locales: [ 'ar', 'en', 'fr'] },
   mc  : { locale, locales, environment },
   me  : { locale, locales, environment },
-  mg  : { locale,       locales: [ 'en', 'fr' ], environment },
+  mg  : { locale,       locales: [ 'en', 'fr' ] },
   mk  : { locale, locales, environment },
   ml  : { locale,       locales: [ 'en', 'fr' ] },
   mn  : { locale, locales: ['mn', ...locales], environment },
